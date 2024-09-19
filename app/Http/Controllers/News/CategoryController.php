@@ -22,10 +22,14 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @todo  Add main category
      */
+
     public function create(Request $request): View
     {
-        return view('admin.category.create');
+        $mainCategory = Category::Where(['is_main' => true])->get();
+
+        return view('admin.category.create', compact('mainCategory'));
     }
 
     /**
@@ -33,10 +37,15 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
+        if ($request->input('is_main') == 1 && $request->input('parent_category')) {
+            return redirect()->back()->with('error', 'Main category cannot have parent category');
+        }
+
         $category = Category::create([
             'name' => $request->input('name'),
-            'slug' => Str::slug($request->input('name'))
-
+            'slug' => Str::slug($request->input('name')),
+            'is_main' => $request->input('is_main'),
+            'parent_id' => $request->input('parent_category') ?? null,
         ]);
 
         return redirect()->route('admin.category')

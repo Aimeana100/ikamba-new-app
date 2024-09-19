@@ -61,7 +61,9 @@ class ArticleController extends Controller
 
     public function index(): View
     {
+
         $articles = Article::with('tags', 'category')->get();
+
         return view('admin.article.index', compact('articles'));
 
     }
@@ -98,6 +100,7 @@ class ArticleController extends Controller
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'headlines' => 'required|string',
+            'priority' => 'required|integer',
 //            'tags' => 'array|exists:tags,id',
         ]);
 
@@ -145,6 +148,22 @@ class ArticleController extends Controller
         return view('admin.article.edit', compact('article', 'categories'));
     }
 
+    public function review(Article $article, $slug): View
+    {
+        $article = Article::where('slug', $slug)->with('category', 'tags')->firstOrFail();
+        $categories = Category::all();
+        return view('admin.article.review', compact('article', 'categories'));
+    }
+
+    public function publish(Article $article, $slug): RedirectResponse
+    {
+        $article = Article::where('slug', $slug)->with('category', 'tags')->firstOrFail();
+        $article->published_at = now();
+        $article->save();
+        return redirect()->route('admin.article');
+
+    }
+
     /**
      * @OA\Put(
      *     path="/api/articles/{id}",
@@ -173,6 +192,7 @@ class ArticleController extends Controller
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'headlines' => 'required|string',
+            'priority' => 'required|integer',
 //            'tags' => 'array|exists:tags,id',
         ]);
 
@@ -184,24 +204,6 @@ class ArticleController extends Controller
         return redirect()->route('admin.article');
     }
 
-    /**
-     * @OA\Delete(
-     *     path="/api/articles/{id}",
-     *     operationId="deleteArticle",
-     *     tags={"Articles"},
-     *     summary="Delete an article",
-     *     description="Deletes an existing article",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(response=200, description="Article deleted successfully"),
-     *     @OA\Response(response=404, description="Article not found"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     * )
-     */
     public function destroy(Article $article)
     {
         // $this->authorize('delete', $article);
@@ -216,7 +218,7 @@ class ArticleController extends Controller
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->move(base_path('../uploads/images'), $filename);
+            $filePath = $file->move(base_path('public/uploads/images'), $filename);
 
             $url = asset('/uploads/images/' . $filename);
 

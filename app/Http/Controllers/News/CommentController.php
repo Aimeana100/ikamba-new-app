@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\News;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -10,7 +12,7 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Collection
     {
         return Comment::all();
 

@@ -12,12 +12,25 @@ class Article extends Model
 
 
     protected $fillable = [
-        'title', 'headlines', 'image', 'description', 'user_id', 'category_id'
+        'title',
+        'headlines',
+        'image',
+        'description',
+        'user_id',
+        'category_id',
+        'published_at',
+        'archive',
+        'reviewer_id',
+        'slug',
+        'views',
+        'likes',
+        'is_home',
+        'priority',
     ];
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category()

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Mail\NewUserEmail;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -40,7 +42,10 @@ class UserController extends Controller
 
         $role = Role::where('name', $request->role)->first();
         $newuser->roles()->attach($role);
-        return redirect()->route('admin.users');
+        Mail::to($newuser)->send(new NewUserEmail($newuser, $pass));
+
+
+        return redirect()->back()->with('success', 'User created and credentials sent!');;
 
     }
 

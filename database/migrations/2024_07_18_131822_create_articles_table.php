@@ -16,7 +16,13 @@ return new class extends Migration {
             $table->text('description');
             $table->text('headlines');
             $table->text('image');
+            $table->integer('views')->default(0);
+            $table->integer('likes')->default(0);
             $table->string('slug')->unique();
+            $table->integer('priority')->default(0);
+            $table->timestamp('published_at')->nullable();
+            $table->boolean('archive')->default(false);
+            $table->foreignId('reviewer_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();

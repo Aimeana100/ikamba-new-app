@@ -24,34 +24,60 @@
                                 <div class="flex flex-wrap mt-0 -mx-3">
                                     <div
                                         class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 ">
-                                        <div
-                                            class="">
 
-                                            <div class="flex-auto p-6">
-                                                <form role="form"
-                                                      action="{{route('admin.category.store')}}"
-                                                      method="post">
-                                                    @method('post')
-                                                    @csrf()
-                                                    <label
-                                                        class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">name</label>
-                                                    <div class="mb-4">
-                                                        <input type="text"
-                                                               name="name"
-                                                               required
-                                                               class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                                               placeholder="Name" aria-label="Name"
-                                                               aria-describedby="email-addon"/>
-                                                    </div>
+                                        <div class="flex-auto p-6">
+                                            <form role="form"
+                                                  action="{{route('admin.category.store')}}"
+                                                  method="post">
+                                                @method('post')
+                                                @csrf()
+                                                <label
+                                                    class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">name</label>
+                                                <div class="mb-4">
+                                                    <input type="text"
+                                                           name="name"
+                                                           required
+                                                           class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                           placeholder="Name" aria-label="Name"
+                                                           aria-describedby="email-addon"/>
+                                                </div>
 
-                                                    <div class="text-center">
-                                                        <button type="submit"
-                                                                class="inline-block lg:w-1/2 px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-blue-600 to-cyan-400 hover:scale-102 hover:shadow-soft-xs active:opacity-85">
-                                                            Create
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                <label
+                                                    class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700"> Is
+                                                    main </label>
+                                                <div class="mb-4">
+                                                    <select
+                                                        name="is_main"
+                                                        required
+                                                        class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                        aria-describedby="email-addon">
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                </div>
+                                                <label
+                                                    class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">Parent
+                                                    Category</label>
+                                                <div class="mb-4">
+                                                    <select
+                                                        name="parent_category"
+                                                        class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                        aria-describedby="email-addon">
+                                                        <option value="">Select Parent Category</option>
+                                                        @foreach($mainCategory as $category)
+                                                            <option
+                                                                value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button type="submit"
+                                                            class="inline-block lg:w-1/2 px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-blue-600 to-cyan-400 hover:scale-102 hover:shadow-soft-xs active:opacity-85">
+                                                        Create
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -63,4 +89,18 @@
         </div>
 
     </div>
+    {{--    toogle functions of is_main option and parent category --}}
+    <script>
+        const isMain = document.querySelector('select[name="is_main"]');
+        const parentCategory = document.querySelector('select[name="isMain"]');
+        isMain.addEventListener('change', function () {
+            if (isMain.value === '1') {
+                parentCategory.disabled = true;
+            } else {
+                parentCategory.disabled = false;
+            }
+            //     reset the value of parent category when is_main is selected to no
+            parentCategory.value = '';
+        });
+    </script>
 </x-app-layout>
