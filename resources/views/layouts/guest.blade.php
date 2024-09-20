@@ -330,8 +330,9 @@
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Main Links </h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#">Login</a></li>
-                                <li class="py-1 hover:text-white"><a href="#"> Reset Password </a></li>
+                                <li class="py-1 hover:text-white"><a href="{{route('login')}}">Login</a></li>
+
+                                <li class="py-1 hover:text-white"><a href="{{route('dashboard')}}"> Dashboard </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
