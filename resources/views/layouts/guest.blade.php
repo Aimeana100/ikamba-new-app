@@ -322,38 +322,31 @@
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">Product</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#">Landing</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Pages</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Sections</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Sign Up</a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> Latest news </a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> Trendings </a></li>
+                                <li class="py-1 hover:text-white"><a href="#">All news categories</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Main Links </h4>
+                            <ul>
                                 <li class="py-1 hover:text-white"><a href="#">Login</a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> Reset Password </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">Support</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Support</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#">Documentation</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Changelog</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Tools</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Icons</a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> 0788888888 </a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> info.ikamba.com </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">Includes</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Contact us</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#">Utilities</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Components</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Example code</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Updates</a></li>
-                            </ul>
-                        </div>
-                        <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">Legal</h4>
-                            <ul>
-                                <li class="py-1 hover:text-white"><a href="#">Privacy Policy</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Terms of Use</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">License</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">GDPR</a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> Instagram </a></li>
+                                <li class="py-1 hover:text-white"><a href="#">LinkedIn</a></li>
+                                <li class="py-1 hover:text-white"><a href="#">Facebook</a></li>
                             </ul>
                         </div>
                     </div>
