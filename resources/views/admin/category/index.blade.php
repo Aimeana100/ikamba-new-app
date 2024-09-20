@@ -15,7 +15,7 @@
                                         <h6 class="mb-0">All Categories</h6>
                                     </div>
                                     <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                                        @if(Auth()->user()->role === 'admin')
+                                        @if(Auth()->user()->role === 'primary_admin')
                                             <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-gray-900 to-slate-800 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
                                                href="{{ route('admin.category.create') }}"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Add
                                                 New Category</a>
@@ -44,7 +44,7 @@
                                                     <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
                                                         N <sup>o</sup>. Articles
                                                     </th>
-                                                    @if(Auth()->user()->role === 'admin')
+                                                    @if(Auth()->user()->role === 'primary_admin')
                                                         <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
                                                             Option
                                                         </th>
@@ -76,7 +76,7 @@
                                                         <span
                                                             class="text-xs font-semibold leading-tight"> {{count($category->articles)}}</span>
                                                         </td>
-                                                        @if(Auth()->user()->role === 'admin')
+                                                        @if(Auth()->user()->role === 'primary_admin')
                                                             <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                                                                 <div class="w-3/4 mx-auto">
                                                                     <div class="ml-auto text-right">
