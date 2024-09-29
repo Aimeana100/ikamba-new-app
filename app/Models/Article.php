@@ -26,6 +26,7 @@ class Article extends Model
         'likes',
         'is_home',
         'priority',
+        'caption'
     ];
 
     public function author()

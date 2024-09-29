@@ -28,6 +28,8 @@
                                             class="">
 
                                             <div class="flex-auto p-6">
+                                                <x-error-display :errors="$errors->any()"/>
+
                                                 <form role="form"
                                                       action="{{route('admin.category.update')}}"
                                                       method="post">

@@ -18,12 +18,15 @@
 var page = window.location.pathname.split("/").pop().split("/")[0];
 var aux = window.location.pathname.split("/");
 
+
 var to_build = (aux.includes('admin') && aux.length > 3 ? '../'.repeat((aux.length - 2) - aux.indexOf('admin')) : './');
 // var to_build = '../';
 var root = window.location.pathname.split("/")
 if (!aux.includes("admin")) {
     page = "dashboard";
 }
+console.log(aux, to_build, page);
+
 loadStylesheet(to_build + "assets/css/perfect-scrollbar.css");
 loadJS(to_build + "assets/js/perfect-scrollbar.js", true);
 

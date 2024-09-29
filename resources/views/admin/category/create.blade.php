@@ -26,6 +26,10 @@
                                         class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 ">
 
                                         <div class="flex-auto p-6">
+                                            <x-error-display :errors="$errors->any()"/>
+                                            <x-success-message-display :successSession="session('success')"/>
+
+
                                             <form role="form"
                                                   action="{{route('admin.category.store')}}"
                                                   method="post">

@@ -71,8 +71,8 @@
     <p>We're excited to have you join Ikamba platform! Below are your account credentials:</p>
 
     <div class="credentials">
-        <p><strong>Email:</strong> {{ $newuser->email }}</p>
-        <p><strong>Password:</strong> {{ $pass }}</p>
+        <p><strong> Email:</strong> {{ $newuser->email }}</p>
+        <p><strong> Password:</strong> {{ $pass }}</p>
     </div>
 
     <p>You can log in by clicking the button below:</p>

@@ -47,7 +47,7 @@ class FrontController extends Controller
     public function showCategory($slug): View
     {
         $category = Category::with('articles.author')->where('slug', $slug)->first();
-        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(6)->get();
+        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
         $mostViewed = Category::with('articles')->where('slug', $slug)->first()->articles->sortByDesc('views')->take(1)  [0];
         return view('front.category', compact('category', 'mostViewed', 'mostPopulars'));
     }
@@ -55,7 +55,7 @@ class FrontController extends Controller
     public function single(Request $request, $slug): View
     {
         $article = Article::where('slug', $slug)->first();
-        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(6)->get();
+        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
         $article->increment('views');
         $shareLinks = \Share::page(
             $request->url(),
@@ -89,7 +89,7 @@ class FrontController extends Controller
     public function search(Request $request): View
     {
         $pattern = $request->input('pattern');
-        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(6)->get();
+        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
         $articles = Article::where('title', 'like', "%$pattern%")->orWhere('description', 'like', "%$pattern%")->orWhere('headlines', 'like', "%$pattern%")->get();
         return view('front.search', compact('articles', 'mostPopulars', 'pattern'));
     }

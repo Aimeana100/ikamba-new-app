@@ -29,8 +29,9 @@
                                 </a>
                                 <div class="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
                                     <a href="{{route('front.single', ['slug' => $article->slug])}}">
-                                        <h2 class="text-3xl font-bold capitalize text-white mb-3"> {{ $article->title  }} </h2>
-                                    </a>
+                                        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold capitalize text-white mb-3 line-clamp-3">
+                                            {{ $article->title }}
+                                        </h2></a>
                                     <p class="text-gray-100 hidden sm:inline-block"> {{ $article->headlines }} </p>
                                     <div class="pt-2">
                                         <div class="text-gray-100">

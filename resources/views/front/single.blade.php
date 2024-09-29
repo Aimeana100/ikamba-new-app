@@ -26,7 +26,7 @@
                                 <figure class="text-center mb-6">
                                     <img class="max-w-full h-auto" src="{{@asset('uploads/images/'. $article->image)}}"
                                          alt="Image description">
-                                    {{-- <figcaption> Type here your description</figcaption>--}}
+                                    <figcaption> {{ $article->caption ?? "No caption"  }} </figcaption>
                                 </figure>
                                 <div class="mb-6">
                                     {!! $article->description !!}
@@ -70,7 +70,9 @@
                     class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
                     <x-most-popular-card :mostPopulars="$mostPopulars"/>
 
-                    @php($ads = ['image' => @asset('front/src/img/ads/250.jpg')])
+                    @php
+                        $ads = ['image' => @asset('front/src/img/ads/250.jpg')]
+                    @endphp
                     <x-ads-card :ads="$ads"/>
                 </div>
             </div>

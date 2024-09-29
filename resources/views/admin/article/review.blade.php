@@ -28,6 +28,9 @@
                                             class="">
 
                                             <div class="flex-auto p-6">
+
+                                                <x-error-display :errors="$errors->any()"/>
+
                                                 <label
                                                     class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">Category</label>
                                                 <div class="mb-4">
@@ -45,6 +48,18 @@
                                                         style="max-height: 300px; max-width: fit-content"
                                                         src="{{ @asset('uploads/images/'.$article->image)}}"
                                                         alt="{{$article->slug}}">
+                                                </div>
+                                                <label
+                                                    class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">
+                                                    Image caption </label>
+                                                <div class="mb-4">
+                                                    <input type="text"
+                                                           name="caption"
+                                                           value="{{$article->caption ?? 'No caption'}}"
+                                                           required
+                                                           class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                           placeholder="Title" aria-label="Caption"
+                                                           aria-describedby="email-addon"/>
                                                 </div>
                                                 <label
                                                     class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">HeadLines</label>
@@ -74,11 +89,11 @@
                                                     </form>
 
                                                 @else
-                                                    <div class="mb-4 bg-green-800">
+                                                    <div class="lg:m-4 bg-lime-200 rounded-l ">
 
                                                         <div class="mb-4">
                                                             <label
-                                                                class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">Published
+                                                                class="mb-2 ml-1 font-bold text-sm/relaxed ">Published
                                                                 at </label> : {{ $article->published_at}}
                                                         </div>
                                                     </div>

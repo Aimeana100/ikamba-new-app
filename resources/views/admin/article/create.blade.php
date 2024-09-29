@@ -28,6 +28,11 @@
                                             class="">
 
                                             <div class="flex-auto p-6">
+
+                                                <x-error-display :errors="$errors->any()"/>
+                                                <x-success-message-display :successSession="session('success')"/>
+
+
                                                 <form role="form"
                                                       action="{{route('admin.article.store')}}"
                                                       method="post" enctype="multipart/form-data">
@@ -90,12 +95,21 @@
                                                                placeholder="Image" aria-label="Image"/>
                                                     </div>
                                                     <label
+                                                        class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">
+                                                        Image caption </label>
+                                                    <div class="mb-4">
+                                                        <input type="text"
+                                                               name="caption"
+                                                               class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                               placeholder="Title" aria-label="Caption"
+                                                               aria-describedby="email-addon"/>
+                                                    </div>
+                                                    <label
                                                         class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">HeadLines</label>
                                                     <div class="mb-4">
                                                         <textarea
                                                             name="headlines"
                                                             id="headlines"
-                                                            maxlength="150"
                                                             rows="3"
                                                             required
                                                             class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"

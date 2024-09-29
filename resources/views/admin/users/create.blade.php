@@ -28,6 +28,10 @@
                                             class="">
 
                                             <div class="flex-auto p-6">
+
+                                                <x-error-display :errors="$errors->any()"/>
+                                                <x-success-message-display :successSession="session('success')"/>
+
                                                 <form role="form"
                                                       action="{{route('admin.users.store')}}"
                                                       method="post">

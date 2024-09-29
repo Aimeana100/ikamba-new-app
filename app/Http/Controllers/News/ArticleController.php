@@ -109,6 +109,9 @@ class ArticleController extends Controller
         $article = new Article($request->all());
         $article->user_id = Auth::user()->id;
         $this->extracted($request, $article);
+        if ($request->has('priority')) {
+            Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
+        }
         $article->save();
 //        $article->tags()->attach($request->tags);
 
@@ -200,6 +203,9 @@ class ArticleController extends Controller
 
         $article = Article::findOrFail($request->input('id'));
         $this->extracted($request, $article);
+        if ($request->has('priority')) {
+            Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
+        }
         $article->update($request->all());
         return redirect()->route('admin.article');
     }

@@ -36,6 +36,9 @@
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap -mx-3">
                                     <div class="flex-auto p-6 px-0 pb-2">
+                                        
+                                        <x-success-message-display :successSession="session('success')"/>
+
                                         <div class="overflow-x-auto">
                                             <table
                                                 class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">

@@ -67,11 +67,15 @@
 </head>
 <body class="text-gray-700 pt-9 sm:pt-10">
 <!-- ========== { HEADER }==========  -->
-<header class="fixed top-0 left-0 right-0 z-50">
+<header class="fixed top-0 left-0 right-0 z-50 ">
     <nav class="bg-black">
-        <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+        <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 ">
             <div class="flex justify-between">
-                <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">Ikamba</div>
+                <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">
+                    <a href="{{route('front.index')}}">
+                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Ikamba</span>
+                    </a>
+                </div>
 
                 <div class="flex flex-row">
                     <!-- nav menu -->
@@ -258,7 +262,10 @@
             <div class="flex flex-wrap flex-row lg:justify-between -mx-3">
                 <div class="flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
                     <div class="flex items-center mb-2">
-                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Ikamba</span>
+                        <a href="{{route('front.index')}}" class="text-2xl font-bold text-white">
+                            <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Ikamba</span>
+                        </a>
+
                         <!-- <img src="{{@asset('front/src/img-min/logo.png" alt="LOGO')}}"> -->
                     </div>
                     <p>This is Ikamba.com for build great newspapper, magazine and news portal.</p>

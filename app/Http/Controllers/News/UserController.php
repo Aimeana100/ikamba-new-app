@@ -31,7 +31,7 @@ class UserController extends Controller
     public function store(CreateUserRequest $request): RedirectResponse
     {
         $request->validateResolved();
-        $pass = '12345678';
+        $pass = generateRandomPassword(12);
         $newuser = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -62,8 +62,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->input('id'));
         $user->update([
-            'name' => $request->input('name',),
-            'email' => $request->input('email'),
+            'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'role' => $request->input('role'),
         ]);
@@ -73,6 +72,6 @@ class UserController extends Controller
             $user->roles()->sync([$role->id]);
 
         }
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
     }
 }
