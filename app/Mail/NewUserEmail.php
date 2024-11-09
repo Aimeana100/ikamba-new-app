@@ -27,7 +27,7 @@ class NewUserEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to the system - Ikamba'
+            subject: 'Welcome to the system - Imbere'
         );
     }
 

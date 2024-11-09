@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Ikamba news') }}</title>
+    <title>{{ config('app.name', 'Imbere news') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -73,7 +73,7 @@
             <div class="flex justify-between">
                 <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">
                     <a href="{{route('front.index')}}">
-                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Ikamba</span>
+                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Imbere</span>
                     </a>
                 </div>
 
@@ -188,7 +188,7 @@
         <div class="mb-auto">
             <!--navigation-->
             <nav class="relative flex flex-wrap">
-                <div class="text-center py-4 w-full font-bold border-b border-gray-100">Ikamba</div>
+                <div class="text-center py-4 w-full font-bold border-b border-gray-100">Imbere</div>
                 <ul id="side-menu" class="w-full float-none flex flex-col">
                     <li class="relative">
                         <a href="{{route('front.index')}}"
@@ -243,7 +243,7 @@
         </div>
         <!-- copyright -->
         <div class="py-4 px-6 text-sm mt-6 text-center">
-            <p>Copyright <a href="#">Ikamba</a> - All right reserved</p>
+            <p>Copyright <a href="#">Imbere</a> - All right reserved</p>
         </div>
     </nav>
 </div><!-- End Mobile menu -->
@@ -263,12 +263,12 @@
                 <div class="flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
                     <div class="flex items-center mb-2">
                         <a href="{{route('front.index')}}" class="text-2xl font-bold text-white">
-                            <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Ikamba</span>
+                            <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Imbere</span>
                         </a>
 
                         <!-- <img src="{{@asset('front/src/img-min/logo.png" alt="LOGO')}}"> -->
                     </div>
-                    <p>This is Ikamba.com for build great newspapper, magazine and news portal.</p>
+                    <p>This is imbere.com for build great newspapper, magazine and news portal.</p>
                     <ul class="space-x-3 mt-6 mb-6 Lg:mb-0">
                         <!--facebook-->
                         <li class="inline-block">
@@ -346,7 +346,7 @@
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Support</h4>
                             <ul>
                                 <li class="py-1 hover:text-white"><a href="#"> 0788888888 </a></li>
-                                <li class="py-1 hover:text-white"><a href="#"> info.ikamba.com </a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> info.imbere.com </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
@@ -368,7 +368,7 @@
         <div class="container py-4 border-t border-gray-200 border-opacity-10">
             <div class="row">
                 <div class="col-12 col-md text-center">
-                    <p class="d-block my-3">Copyright © Ikamba | All rights reserved.</p>
+                    <p class="d-block my-3">Copyright © Imbere | All rights reserved.</p>
                 </div>
             </div>
         </div>

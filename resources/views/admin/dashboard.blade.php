@@ -717,7 +717,7 @@
                             </script>
                             made with <i class="fa fa-heart"></i> by
                             <a href="" class="font-semibold text-slate-700" target="_blank">
-                                Ikamba</a> News website
+                                Imbere</a> News website
                         </div>
                     </div>
                     <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">

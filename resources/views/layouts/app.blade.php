@@ -38,7 +38,7 @@
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="{{route('dashboard')}}" target="">
             <img src="{{asset('admin/assets/img/logo-ct.png')}}"
                  class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo"/>
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Ikamba Dashboard</span>
+            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Imbere Dashboard</span>
         </a>
     </div>
 
@@ -249,7 +249,7 @@
 
             <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
                 <div class="flex items-center md:ml-auto md:pr-4">
-                    
+
                 </div>
                 <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                     <!-- online builder btn  -->
@@ -292,7 +292,7 @@
          class="z-sticky shadow-soft-3xl w-90 ease-soft -right-90 fixed top-0 left-auto flex h-full min-w-0 flex-col break-words rounded-none border-0 bg-white bg-clip-border px-2.5 duration-200">
         <div class="px-6 pt-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
             <div class="float-left">
-                <h5 class="mt-4 mb-0"> Ikamba </h5>
+                <h5 class="mt-4 mb-0"> Imbere </h5>
                 <p>See our dashboard options.</p>
             </div>
             <div class="float-right mt-6">

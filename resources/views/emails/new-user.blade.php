@@ -68,7 +68,7 @@
 <div class="container">
     <h2>Welcome, {{ $newuser->name }}!</h2>
 
-    <p>We're excited to have you join Ikamba platform! Below are your account credentials:</p>
+    <p>We're excited to have you join Imbere platform! Below are your account credentials:</p>
 
     <div class="credentials">
         <p><strong> Email:</strong> {{ $newuser->email }}</p>
@@ -82,7 +82,7 @@
 
     <p>Thanks for joining us!</p>
 
-    <p>Best regards,<br> The Ikamba Team</p>
+    <p>Best regards,<br> The Imbere Team</p>
 </div>
 
 <div class="footer">
