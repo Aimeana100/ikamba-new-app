@@ -1,4 +1,9 @@
 <x-app-layout>
+
+
+    @section('ARTICLE_SELECTED', 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700')
+    @section('ARTICLE_SELECTED_ICON', 'bg-gradient-to-tl from-purple-700 to-pink-500')
+
     <div class="w-full px-6 py-6 mx-auto">
         <!-- content -->
 
@@ -36,7 +41,7 @@
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap -mx-3">
                                     <div class="flex-auto p-6 px-0 pb-2">
-                                        
+
                                         <x-success-message-display :successSession="session('success')"/>
 
                                         <div class="overflow-x-auto">
@@ -106,19 +111,24 @@
                                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                                                             <div class="w-3/4 mx-auto">
                                                                 <div class="ml-auto text-right">
-                                                                    @if(Auth()->user()->role === 'primary_admin')
+                                                                    @if(Auth()->user()->role === 'primary_admin' || Auth()->user()->id == $article->author()->id)
                                                                         <a class="relative z-10 inline-block px-4 py-3 mb-0 font-bold text-center text-transparent uppercase align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 bg-gradient-to-tl from-red-600 to-rose-400 hover:scale-102 active:opacity-85 bg-x-25 bg-clip-text"
-                                                                           href="javascript:;"><i
+                                                                           href="javascript:void(0)"
+                                                                           onclick="confirmDelete('{{ route('admin.article.delete', ['id'=> $article->id]) }}')">
+
+                                                                            <i
                                                                                 class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-rose-400 bg-x-25 bg-clip-text"></i>Delete</a>
                                                                         <a class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
                                                                            href="{{route('admin.article.edit', ['slug' => $article->slug])}}"><i
                                                                                 class="mr-2 fas fa-pencil-alt text-slate-700"
                                                                                 aria-hidden="true"></i>Edit</a>
                                                                     @endif
-                                                                    <a class="inline-block px-2 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-sm ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
-                                                                       href="{{route('admin.article.review', ['slug' => $article->slug])}}"><i
-                                                                            class="mr-2 fas fa-book text-slate-700"
-                                                                            aria-hidden="true"></i>Review</a>
+                                                                    @if(Auth()->user()->role === 'chief_editor')
+                                                                        <a class="inline-block px-2 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-sm ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
+                                                                           href="{{route('admin.article.review', ['slug' => $article->slug])}}"><i
+                                                                                class="mr-2 fas fa-book text-slate-700"
+                                                                                aria-hidden="true"></i>Review</a>
+                                                                    @endif
                                                                 </div>
 
                                                             </div>
@@ -138,5 +148,41 @@
             </div>
         </div>
 
+
+        <!-- Modal Structure -->
+        <div id="deleteConfirmationModal" class="fixed inset-0 z-100 hidden overflow-y-auto bg-black bg-opacity-50">
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+                    <h2 class="mb-4 text-lg font-semibold text-gray-800">Confirm Deletion</h2>
+                    <p>Are you sure you want to delete this item?</p>
+                    <div class="flex justify-end mt-6">
+                        <button onclick="closeModal()"
+                                class="px-4 py-2 mr-2 text-gray-600 bg-gray-200 rounded hover:bg-gray-300">Cancel
+                        </button>
+                        <form id="deleteForm" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+    <script>
+        // JavaScript to open the modal and set the form action
+        function confirmDelete(url) {
+            document.getElementById('deleteForm').action = url;
+            document.getElementById('deleteConfirmationModal').classList.remove('hidden');
+        }
+
+        // JavaScript to close the modal
+        function closeModal() {
+            document.getElementById('deleteConfirmationModal').classList.add('hidden');
+        }
+    </script>
 </x-app-layout>

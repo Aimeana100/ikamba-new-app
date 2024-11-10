@@ -1,5 +1,8 @@
 <x-app-layout>
-    <div class="w-full px-6 mx-auto">
+    @section('USER_SELECTED', 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700')
+    @section('USER_SELECTED_ICON', 'bg-gradient-to-tl from-purple-700 to-pink-500')
+
+    <div class="w-full px-6 mx-au 'to">
         <!-- content -->
         <div
             class="relative flex flex-col  lg:w-2/3  min-w-0 mt-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">

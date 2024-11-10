@@ -1,4 +1,7 @@
 <x-app-layout>
+    @section('USER_SELECTED', 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700')
+    @section('USER_SELECTED_ICON', 'bg-gradient-to-tl from-purple-700 to-pink-500')
+
     <div class="w-full px-6 mx-auto">
         <!-- content -->
         <div

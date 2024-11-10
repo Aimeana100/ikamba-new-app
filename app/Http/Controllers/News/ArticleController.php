@@ -62,7 +62,7 @@ class ArticleController extends Controller
     public function index(): View
     {
 
-        $articles = Article::with('tags', 'category')->get();
+        $articles = Article::with('tags', 'category', 'author')->where('status', true)->get();
 
         return view('admin.article.index', compact('articles'));
 
@@ -77,22 +77,6 @@ class ArticleController extends Controller
         return view('admin.article.create', compact('categories'));
     }
 
-
-    /**
-     * @OA\Post(
-     *     path="/api/articles",
-     *     operationId="createArticle",
-     *     tags={"Articles"},
-     *     summary="Create a new article",
-     *     description="Creates a new article",
-     *     @OA\RequestBody(
-     *         required=true,
-     *     ),
-     *     @OA\Response(response=201, description="Article created successfully"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     * )
-     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -236,6 +220,15 @@ class ArticleController extends Controller
                 'message' => 'No file uploaded'
             ], 400);
         }
+    }
+
+    public function delete(int $id): RedirectResponse
+    {
+        $article = Article::findOrFail($id);
+        $article->status = false;
+        $article->save();
+        return redirect()->route('admin.article')
+            ->with('success', 'Article deleted successfully.');
     }
 
     /**

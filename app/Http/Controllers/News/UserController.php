@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->where('status', 'active')->get();
         $roles = Role::all();
         return view('admin.users.index', compact('users', 'roles'));
     }
@@ -73,5 +73,13 @@ class UserController extends Controller
 
         }
         return redirect()->route('admin.users')->with('success', 'User updated successfully!');
+    }
+
+    public function delete(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'inactive';
+        $user->save();
+        return redirect()->back()->with('success', 'User deleted successfully!');
     }
 }

@@ -1,4 +1,7 @@
 <x-app-layout>
+    @section('CATEGORY_SELECTED', 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700')
+    @section('CATEGORY_SELECTED_ICON', 'bg-gradient-to-tl from-purple-700 to-pink-500')
+
     <div class="w-full px-6 mx-auto">
         <!-- content -->
         <div
@@ -10,7 +13,7 @@
                     </div>
                     <div class="flex-none w-1/2 max-w-full px-3 text-right">
                         <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-gray-900 to-slate-800 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                           href="{{ route('admin.category') }}"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;All
+                           href="{{ route('admin.category') }}">&nbsp;&nbsp;All
                             Category</a>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::with('articles')->get();
+        $categories = Category::Where('is_active', true)->with('articles')->get();
         return view('admin.category.index', compact('categories'));
     }
 
@@ -94,5 +94,15 @@ class CategoryController extends Controller
     {
         $category->delete();
         return response()->json(null, 204);
+    }
+
+    public function delete(int $id): RedirectResponse
+    {
+        $category = Category::findOrFail($id);
+        $category->is_active = false;
+        $category->save();
+        return redirect()->route('admin.category')
+            ->with('success', 'Category deleted successfully.');
+
     }
 }

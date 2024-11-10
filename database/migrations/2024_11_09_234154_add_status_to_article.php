@@ -11,7 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->addColumn('string', 'caption', ['length' => 255])->nullable();
+            $table->addColumn('boolean', 'status')->default(true);
+
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('caption');
+            $table->dropColumn('status');
         });
     }
 };
