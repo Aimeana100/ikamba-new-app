@@ -3,6 +3,12 @@
 # Change to the project directory.
 cd /home/imbereaaeq/ikamba-app-github
 
+#copy all the contents of the project to the /home/imbereaaeq/ikamba-news-app folder
+cp -r /home/imbereaaeq/ikamba-app-github/* /home/imbereaaeq/ikamba-news-app
+
+# Change to the project directory.
+cd /home/imbereaaeq/ikamba-news-app
+
 # Pull the latest changes from the git repository
 git pull origin main
 
