@@ -18,5 +18,5 @@ jobs:
 
       - name: Deploy to FTP
         run: |
-          chmod +x deploy.sh
-          ./deploy.sh ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ./ /imbere.com/imbereaaeq/ikamba-app-github
+          chmod +x scripts/deploy.sh
+          ./scripts/deploy.sh ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ./ /imbere.com/imbereaaeq/ikamba-app-github
