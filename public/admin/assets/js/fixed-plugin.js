@@ -1,5 +1,5 @@
 var pageName = page;
-var sidenav_target = to_build + "admin/" + pageName + ".html";
+var sidenav_target = to_build + "admin/" + pageName;
 var fixedPlugin = document.querySelector("[fixed-plugin]");
 var fixedPluginButton = document.querySelector("[fixed-plugin-button]");
 var fixedPluginButtonNav = document.querySelector("[fixed-plugin-button-nav]");
@@ -32,28 +32,28 @@ var sidenav_highlight = document.querySelector("a[href=" + CSS.escape(sidenav_ta
 
 // fixed plugin toggle
 if (pageName != "rtl") {
-    fixedPluginButton.addEventListener("click", function () {
-        fixedPluginCard.classList.toggle("-right-90");
-        fixedPluginCard.classList.toggle("right-0");
-    });
+    // fixedPluginButton.addEventListener("click", function () {
+    //     fixedPluginCard.classList.toggle("-right-90");
+    //     fixedPluginCard.classList.toggle("right-0");
+    // });
+    //
+    // fixedPluginButtonNav.addEventListener("click", function () {
+    //     fixedPluginCard.classList.toggle("-right-90");
+    //     fixedPluginCard.classList.toggle("right-0");
+    // });
+    //
+    // fixedPluginCloseButton.addEventListener("click", function () {
+    //     fixedPluginCard.classList.toggle("-right-90");
+    //     fixedPluginCard.classList.toggle("right-0");
+    // });
 
-    fixedPluginButtonNav.addEventListener("click", function () {
-        fixedPluginCard.classList.toggle("-right-90");
-        fixedPluginCard.classList.toggle("right-0");
-    });
-
-    fixedPluginCloseButton.addEventListener("click", function () {
-        fixedPluginCard.classList.toggle("-right-90");
-        fixedPluginCard.classList.toggle("right-0");
-    });
-
-    window.addEventListener("click", function (e) {
-        if (!fixedPlugin.contains(e.target) && !fixedPluginButton.contains(e.target) && !fixedPluginButtonNav.contains(e.target)) {
-            if (fixedPluginCard.classList.contains("right-0")) {
-                fixedPluginCloseButton.click();
-            }
-        }
-    });
+    // window.addEventListener("click", function (e) {
+    //     if (!fixedPlugin.contains(e.target) && !fixedPluginButton.contains(e.target) && !fixedPluginButtonNav.contains(e.target)) {
+    //         if (fixedPluginCard.classList.contains("right-0")) {
+    //             fixedPluginCloseButton.click();
+    //         }
+    //     }
+    // });
 } else {
     fixedPluginButton.addEventListener("click", function () {
         fixedPluginCard.classList.toggle("-left-90");

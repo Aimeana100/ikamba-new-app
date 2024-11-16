@@ -9,17 +9,28 @@ use App\Mail\NewUserEmail;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $users = User::with('roles')->where('status', 'active')->get();
+        $users = User::with('roles');
+        $userStatus = $request->status ?? 'active';
+
+        if ($request->has('search')) {
+            $users = $users->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $users = User::with('roles')->where('status', $userStatus);
+
+        $users = $users->get();
+
         $roles = Role::all();
-        return view('admin.users.index', compact('users', 'roles'));
+        return view('admin.users.index', compact('users', 'roles', 'userStatus'));
     }
 
     public function create(): View
@@ -30,7 +41,6 @@ class UserController extends Controller
 
     public function store(CreateUserRequest $request): RedirectResponse
     {
-        $request->validateResolved();
         $pass = generateRandomPassword(12);
         $newuser = User::create([
             'name' => $request->input('name'),
@@ -81,5 +91,14 @@ class UserController extends Controller
         $user->status = 'inactive';
         $user->save();
         return redirect()->back()->with('success', 'User deleted successfully!');
+    }
+
+    public function activate(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'active';
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', 'User Activated successfully!');
     }
 }

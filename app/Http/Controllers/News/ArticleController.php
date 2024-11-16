@@ -15,56 +15,30 @@ use Illuminate\View\View;
 /**
  * @OA\Info(
  *     version="1.0.0",
- *     title="IKAMBA News API Documentation",
+ *     title="Imbere News API Documentation",
  *     description="API documentation for IKAMBA News App",
  * )
  */
 class ArticleController extends Controller
 {
 
-    /**
-     * @OA\Schema(
-     *     schema="Article",
-     *     type="object",
-     *     title="Article",
-     *     required={"title", "body", "category_id"},
-     *     @OA\Property(property="id", type="integer", example=1),
-     *     @OA\Property(property="title", type="string", example="Sample Article Title"),
-     *     @OA\Property(property="description", type="string", example="This is the body of the article."),
-     *     @OA\Property(property="user_id", type="integer", example=1),
-     *     @OA\Property(property="category_id", type="integer", example=1),
-     *     @OA\Property(property="created_at", type="string", format="date-time", example="2023-01-01T00:00:00Z"),
-     *     @OA\Property(property="updated_at", type="string", format="date-time", example="2023-01-01T00:00:00Z"),
-     *     @OA\Property(property="tags", type="array", @OA\Items(type="string")),
-     * )
-     */
-
-
-    //  @OA\Property(property="comments", type="array", @OA\Items(ref="#/components/schemas/Comment"))
-
-    /**
-     * @OA\Get(
-     *     path="/api/articles",
-     *     operationId="getArticlesList",
-     *     tags={"Articles"},
-     *     summary="Get list of articles",
-     *     description="Returns list of articles",
-     *     @OA\Response(
-     *         response=200,
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Article")),
-     *         description="Successful operation",
-     *     ),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     * )
-     */
-
-    public function index(): View
+    public function index(Request $request): View
     {
+        $searchTerm = $request->input('search') || '';
+        $articles = Article::with('tags', 'category', 'author')->where('status', true);
+        if (Auth::user()->isJournalist()) {
+            $articles = $articles->where('user_id', Auth::user()->id);
+        }
+        if ($request->has('search')) {
+            $articles = $articles->where('title', 'like', '%' . $searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                ->orWhere('headlines', 'like', '%' . $searchTerm . '%')
+                ->orWhere('caption', 'like', '%' . $searchTerm . '%');
+        }
+        $articles = $articles->orderBy('priority', 'asc')->get();
 
-        $articles = Article::with('tags', 'category', 'author')->where('status', true)->get();
-
-        return view('admin.article.index', compact('articles'));
+//        $articles = Article::with('tags', 'category', 'author')->where('status', true)->get();
+        return view('admin.article.index', compact('articles', 'searchTerm'));
 
     }
 
@@ -73,7 +47,7 @@ class ArticleController extends Controller
      */
     public function create(Request $request): View
     {
-        $categories = Category::all();
+        $categories = Category::where('is_active', true)->where('is_main', false)->get();
         return view('admin.article.create', compact('categories'));
     }
 

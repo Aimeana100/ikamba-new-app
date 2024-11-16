@@ -16,14 +16,9 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::Where('is_active', true)->with('articles')->get();
+        $categories = Category::Where('is_active', true)->with(['articles', 'children'])->get();
         return view('admin.category.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     * @todo  Add main category
-     */
 
     public function create(Request $request): View
     {
@@ -99,8 +94,9 @@ class CategoryController extends Controller
     public function delete(int $id): RedirectResponse
     {
         $category = Category::findOrFail($id);
-        $category->is_active = false;
-        $category->save();
+//        $category->is_active = false;
+//        $category->save();
+        $category->delete();
         return redirect()->route('admin.category')
             ->with('success', 'Category deleted successfully.');
 

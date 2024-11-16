@@ -52,8 +52,7 @@
                     <div class="box-one flex flex-row flex-wrap">
 
                         @foreach($homeArticles as $article)
-                            @if($loop->first)
-                                @continue
+                            @if(!$loop->first)
 
                                 <article class="flex-shrink max-w-full w-full sm:w-1/2">
                                     <div class="relative hover-img max-h-48 overflow-hidden">

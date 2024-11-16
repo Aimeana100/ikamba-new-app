@@ -25,6 +25,8 @@ class FrontController extends Controller
 //        take first 5 items in the array
         $homeArticles = $homeArticles->take(5);
 
+//        dd($homeArticles);
+
         return view('front.index', compact('latestStories', 'homeArticles'));
     }
 

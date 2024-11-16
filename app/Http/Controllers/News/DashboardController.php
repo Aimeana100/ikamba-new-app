@@ -11,9 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('status', 'active')->get();
         $categories = Category::all();
-        $articles = Article::all();
+        $articles = Article::where('status', true)->get();
         return view('admin.dashboard', compact('users', 'categories', 'articles'));
     }
 }
