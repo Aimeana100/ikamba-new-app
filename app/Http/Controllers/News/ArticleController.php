@@ -217,7 +217,11 @@ class ArticleController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(base_path('public/uploads/images'), $filename);
+
+            // upload in public for when in development and in public_html in production using env variables
+            $fileToUpload = env('PUBLIC_FILE', 'public_html');
+
+            $image->move(base_path($fileToUpload . '/uploads/images'), $filename);
             $article->image = $filename;
         }
     }
