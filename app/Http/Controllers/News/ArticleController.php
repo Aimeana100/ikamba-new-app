@@ -219,7 +219,8 @@ class ArticleController extends Controller
             $filename = time() . '_' . $image->getClientOriginalName();
 
             // upload in public for when in development and in public_html in production using env variables
-            $fileToUpload = env('PUBLIC_FILE', 'public_html');
+
+            $fileToUpload = env('APP_ENV') == 'local' ? 'public' : '../public_html';
 
             $image->move(base_path($fileToUpload . '/uploads/images'), $filename);
             $article->image = $filename;

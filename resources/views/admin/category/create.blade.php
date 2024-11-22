@@ -50,14 +50,19 @@
                                                 </div>
 
                                                 <label
-                                                    class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700"> Is
+                                                    class="mb-0 ml-1 font-bold text-sm/relaxed text-slate-700"> Is
                                                     main </label>
                                                 <div class="mb-4">
+                                                    <span
+                                                        class="text-xs text-gray-500"> Main category will show in user navigation menu, and only no-main category will show on article creation page. </span>
                                                     <select
                                                         name="is_main"
                                                         required
                                                         class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
                                                         aria-describedby="email-addon">
+                                                        <option value="" selected disabled> choose the level of
+                                                            category
+                                                        </option>
                                                         <option value="1">Yes</option>
                                                         <option value="0">No</option>
                                                     </select>
@@ -65,14 +70,17 @@
                                                 <label
                                                     class="mb-2 ml-1 font-bold text-sm/relaxed text-slate-700">Parent
                                                     Category</label>
-                                                <div class="mb-4">
+                                                <div class="mb-4" id="parent_category_div">
                                                     <select
+                                                        id="parent_category"
                                                         name="parent_category"
                                                         class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
                                                         aria-describedby="email-addon">
-                                                        <option value="">Select Parent Category</option>
+                                                        <option value="" selected disabled>Select Parent Category
+                                                        </option>
                                                         @foreach($mainCategory as $category)
                                                             <option
+                                                                is_main={{$category->is_main ? 'isMain' : ''}}
                                                                 value="{{$category->id}}">{{$category->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -98,16 +106,12 @@
     </div>
     {{--    toogle functions of is_main option and parent category --}}
     <script>
-        const isMain = document.querySelector('select[name="is_main"]');
-        const parentCategory = document.querySelector('select[name="isMain"]');
+        const categorySelect = document.getElementById('parent_category');
+
+        // parentCategoryDiv.style.display = 'none';
+
         isMain.addEventListener('change', function () {
-            if (isMain.value === '1') {
-                parentCategory.disabled = true;
-            } else {
-                parentCategory.disabled = false;
-            }
-            //     reset the value of parent category when is_main is selected to no
-            parentCategory.value = '';
+            categorySelect.disabled = isMain.value === '1';
         });
     </script>
 </x-app-layout>
