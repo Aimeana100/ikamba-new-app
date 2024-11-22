@@ -47,6 +47,7 @@ class ArticleController extends Controller
      */
     public function create(Request $request): View
     {
+
         $categories = Category::where('is_active', true)->where('is_main', false)->get();
         return view('admin.article.create', compact('categories'));
     }
@@ -182,7 +183,8 @@ class ArticleController extends Controller
         if ($request->hasFile('upload')) {
             $file = $request->file('upload');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->move(base_path('public/uploads/images'), $filename);
+
+            $filePath = env('APP_ENV') == 'local' ? $file->move(base_path('public/uploads/images'), $filename) : $file->move(realpath('../public_html/uploads/images'), $filename);
 
             $url = asset('/uploads/images/' . $filename);
 
@@ -218,16 +220,19 @@ class ArticleController extends Controller
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
 
-            // Define the file upload path based on environment
-            $uploadPath = public_path('uploads/images');
 
-            // Make sure the directory exists before uploading the file
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);  // Recursively create directories if they don't exist
+            // Define the upload directory based on the environment
+            $uploadDir = env('APP_ENV') == 'local'
+                ? public_path('uploads/images')  // Local development
+                : realpath('../public_html/uploads/images');  // Production
+            // Check if the directory exists; if not, create it
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
             }
 
-            // Move the uploaded file
-            $image->move($uploadPath, $filename);
+            // Move the uploaded file to the target directory
+            $image->move($uploadDir, $filename);
+
             $article->image = $filename;
         }
     }
