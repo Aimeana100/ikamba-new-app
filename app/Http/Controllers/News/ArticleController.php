@@ -164,8 +164,16 @@ class ArticleController extends Controller
         $this->extracted($request, $article);
         if ($request->has('priority')) {
             Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
+            $article->priority = $request->input('priority');
         }
-        $article->update($request->all());
+
+        // Update article fields
+        $article->title = $request->input('title');
+        $article->description = $request->input('description');
+        $article->category_id = $request->input('category_id');
+        $article->headlines = $request->input('headlines');
+
+        $article->save();
         return redirect()->route('admin.article');
     }
 
