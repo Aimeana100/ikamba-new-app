@@ -219,9 +219,7 @@ class ArticleController extends Controller
             $filename = time() . '_' . $image->getClientOriginalName();
 
             // Define the file upload path based on environment
-            $uploadPath = env('APP_ENV') == 'local'
-                ? public_path('uploads/images')
-                : public_path('../public_html/uploads/images');
+            $uploadPath = public_path('uploads/images');
 
             // Make sure the directory exists before uploading the file
             if (!file_exists($uploadPath)) {
