@@ -218,12 +218,20 @@ class ArticleController extends Controller
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
 
-            // upload in public for when in development and in public_html in production using env variables
+            // Define the file upload path based on environment
+            $uploadPath = env('APP_ENV') == 'local'
+                ? public_path('uploads/images')
+                : public_path('../public_html/uploads/images');
 
-            $fileToUpload = env('APP_ENV') == 'local' ? 'public' : '../public_html';
+            // Make sure the directory exists before uploading the file
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);  // Recursively create directories if they don't exist
+            }
 
-            $image->move(base_path($fileToUpload . '/uploads/images'), $filename);
+            // Move the uploaded file
+            $image->move($uploadPath, $filename);
             $article->image = $filename;
         }
     }
+
 }
