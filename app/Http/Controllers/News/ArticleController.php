@@ -174,6 +174,7 @@ class ArticleController extends Controller
         $article->headlines = $request->input('headlines');
 
         $article->save();
+
         return redirect()->route('admin.article');
     }
 
