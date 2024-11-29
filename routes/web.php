@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'])->group(function () {
+Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,journalist'])->group(function () {
     Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article');
     Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
     Route::get('/admin/article/edit/{slug}', [ArticleController::class, 'edit'])->name('admin.article.edit');
