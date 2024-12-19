@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\News\AdsController;
 use App\Http\Controllers\News\ArticleController;
 use App\Http\Controllers\News\CategoryController;
 use App\Http\Controllers\News\DashboardController;
@@ -32,9 +33,13 @@ Route::middleware(['auth', RoleMiddleware::class . ':primary_admin'])->group(fun
     Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
 });
 
-
-Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'])->group(function () {
+Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,journalist'])->group(function () {
     Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
+});
+
+
+Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category')->middleware(RoleMiddleware::class . ':journalist,primary_admin,chief_editor');
+Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'])->group(function () {
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
     Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
     Route::patch('/admin/category/update', [CategoryController::class, 'update'])->name('admin.category.update');
@@ -43,11 +48,21 @@ Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'
 });
 
 
+//Ads Routes
+
+Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'])->group(function () {
+    Route::get('/admin/ads', [AdsController::class, 'index'])->name('admin.ads');
+    Route::get('/admin/ads/create', [AdsController::class, 'create'])->name('admin.ads.create');
+    Route::post('/admin/ads/store', [AdsController::class, 'store'])->name('admin.ads.store');
+    Route::patch('/admin/ads/update', [AdsController::class, 'update'])->name('admin.ads.update');
+    Route::get('/admin/ads/edit/{id}', [AdsController::class, 'edit'])->name('admin.ads.edit');
+    Route::delete('/admin/ads/delete/{id}', [AdsController::class, 'delete'])->name('admin.ads.delete');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });

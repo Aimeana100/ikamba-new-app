@@ -77,25 +77,7 @@ class ArticleController extends Controller
         return redirect()->route('admin.article');
     }
 
-    /**
-     * @OA\Get(
-     *     path="/api/articles/{id}",
-     *     operationId="getArticleById",
-     *     tags={"Articles"},
-     *     summary="Get article by ID",
-     *     description="Returns a single article",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(response=200, description="Successful operation"),
-     *     @OA\Response(response=404, description="Article not found"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     * )
-     */
-    public function show(Article $article)
+    public function show(Article $article): Article
     {
         return $article->load('user', 'category', 'tags', 'comments');
     }
@@ -103,7 +85,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article, $slug)
+    public function edit(Article $article, $slug): View
     {
         $article = Article::where('slug', $slug)->with('category', 'tags')->firstOrFail();
         $categories = Category::all();
@@ -126,28 +108,7 @@ class ArticleController extends Controller
 
     }
 
-    /**
-     * @OA\Put(
-     *     path="/api/articles/{id}",
-     *     operationId="updateArticle",
-     *     tags={"Articles"},
-     *     summary="Update an existing article",
-     *     description="Updates an existing article",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *     ),
-     *     @OA\Response(response=200, description="Article updated successfully"),
-     *     @OA\Response(response=400, description="Bad request"),
-     *     @OA\Response(response=401, description="Unauthorized"),
-     * )
-     */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -221,9 +182,11 @@ class ArticleController extends Controller
      * @param $article
      * @return void
      */
-    public function extracted(Request $request, $article): void
+    public function extracted(Request $request, $article, $has_slug = false): void
     {
-        $article->slug = Str::slug($request->input('title', '-'));
+        if ($has_slug) {
+            $article->slug = Str::slug($request->input('title', '-'));
+        }
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

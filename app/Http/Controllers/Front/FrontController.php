@@ -49,7 +49,7 @@ class FrontController extends Controller
     public function showCategory($slug): View
     {
         $category = Category::with('articles.author')->where('slug', $slug)->first();
-        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
+        $mostPopulars = Article::with('category')->where('published_at', '<>', null)->orderBy('views', 'desc')->take(15)->get();
         $mostViewed = Category::with('articles')->where('slug', $slug)->first()->articles->sortByDesc('views')->take(1)  [0];
         return view('front.category', compact('category', 'mostViewed', 'mostPopulars'));
     }
@@ -57,7 +57,7 @@ class FrontController extends Controller
     public function single(Request $request, $slug): View
     {
         $article = Article::where('slug', $slug)->first();
-        $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
+        $mostPopulars = Article::with('category')->where('published_at', '<>', null)->orderBy('views', 'desc')->take(15)->get();
         $article->increment('views');
         $shareLinks = \Share::page(
             $request->url(),
