@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Imbere news') }}</title>
+    <meta name="description"
+          content="@yield('meta_description', 'Stay updated with the latest news and blogs on IMBERE.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Rwanda, inkuru, news, blogs, updates, amakuru, imbere')">
+    <meta name="author" content="Anathole">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="@yield('og_title', 'IMBERE')">
+    <meta property="og:description" content="@yield('og_description', 'Ikintu cyambere ni amakuru | IMBERE')">
+    <meta property="og:image" content="@yield('og_image', @asset('front/src/img/favicon.jpg'))">
+    <meta property="og:url" content="@yield('og_url', url()->current())">
+    <meta property="og:type" content="website">
+
+    <title>@yield('page_title', 'Ikintu cyambere ni amakuru | IMBERE')</title>
+
+
+    <link rel="canonical" href="@yield('meta_canonical', url()->current())">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
@@ -26,6 +41,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    {{--    Goodgle add sense--}}
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8342568204660890"
+            crossorigin="anonymous"></script>
 
     <style>
         .social-btn-sp #social-links {
@@ -250,7 +270,16 @@
 
 <!-- =========={ MAIN }==========  -->
 <main id="content">
+    {{--    exclude login route--}}
+    @if(!request()->routeIs('login'))
+        <x-top-ads-card :ad="$top_active_ads"/>
+    @endif
+
     {{$slot}}
+    @if(!request()->routeIs('login'))
+        <x-top-ads-card :ad="$bottom_active_ads"/>
+    @endif
+
 
 </main><!-- end main -->
 
@@ -327,34 +356,37 @@
                 <div class="flex-shrink max-w-full w-full lg:w-3/5 px-3">
                     <div class="flex flex-wrap flex-row">
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">Product</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">IBYO DUKORA</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#"> Latest news </a></li>
-                                <li class="py-1 hover:text-white"><a href="#"> Trendings </a></li>
-                                <li class="py-1 hover:text-white"><a href="#">All news categories</a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> Amakuru agezweho </a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> kwamamaza </a></li>
+                                <li class="py-1 hover:text-white"><a href="#">Online TV Shows</a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Main Links </h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="{{route('login')}}">Login</a></li>
+                                {{--                                <li class="py-1 hover:text-white"><a href="{{route('login')}}">Login</a></li>--}}
 
                                 <li class="py-1 hover:text-white"><a href="{{route('dashboard')}}"> Dashboard </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Support</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> UBUFASHA</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#"> 0788888888 </a></li>
-                                <li class="py-1 hover:text-white"><a href="#"> info.imbere.com </a></li>
+                                <li class="py-1 hover:text-white"><a href="#"> +250733149386 </a></li>
+                                <li class="py-1 hover:text-white"><a href="mailto:imbereonlinenewspaper@gmail">
+                                        Email us: IMBERE.COM </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Contact us</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> DUKURIKIRE</h4>
                             <ul>
                                 <li class="py-1 hover:text-white"><a href="#"> Instagram </a></li>
-                                <li class="py-1 hover:text-white"><a href="#">LinkedIn</a></li>
+                                <li class="py-1 hover:text-white"><a href="#">YouTube</a></li>
                                 <li class="py-1 hover:text-white"><a href="#">Facebook</a></li>
+                                <li class="py-1 hover:text-white"><a href="#">Twitter</a></li>
+
                             </ul>
                         </div>
                     </div>

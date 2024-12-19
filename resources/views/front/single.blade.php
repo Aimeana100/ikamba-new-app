@@ -1,6 +1,19 @@
 <x-guest-layout>
 
-    <x-top-ads-card/>
+
+    @section('page_title', 'IMBERE | ' . $article->title)
+    @section('meta_description', $article->headlines)
+    @section('meta_image', asset('uploads/images/'. $article->image))
+    @section('meta_image_alt', $article->caption)
+    @section('meta_url', route('front.single', ['slug' => $article->slug]))
+
+    @section('og_title', 'IMBERE | ' . $article->title)
+    @section('og_description', $article->headlines)
+    @section('og_image', asset('uploads/images/'. $article->image))
+    @section('og_url', route('front.single', ['slug' => $article->slug]))
+
+
+    {{--    <x-top-ads-card/>--}}
 
 
     <!-- block news -->
@@ -78,4 +91,6 @@
             </div>
         </div>
     </div>
+    {{--    <x-top-ads-card/>--}}
+
 </x-guest-layout>
