@@ -17,13 +17,13 @@
 
 
     <!-- block news -->
-    <div class="bg-gray-50 py-6">
+    <div class="bg-white dark:bg-gray-800 py-6">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
             <div class="flex flex-row flex-wrap">
                 <!-- Left -->
                 <div class="flex-shrink max-w-full w-full lg:w-2/3  overflow-hidden">
                     <div class="w-full py-3">
-                        <h2 class="text-gray-800 text-2xl font-bold">
+                        <h2 class="text-2xl font-bold dark:text-gray-300 text-gray-600">
                             <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span> {{ $article->title }}
                         </h2>
                     </div>
@@ -31,17 +31,17 @@
                         <div class="max-w-full w-full px-4">
                             <!-- Post content -->
                             <div class="leading-relaxed pb-4">
-                                <p class="mb-5">
+                                <p class="mb-5 dark:text-gray-300 text-gray-600">
                                     {{ $article->headlines }}
                                 </p>
 
 
-                                <figure class="text-center mb-6">
+                                <figure class="text-center mb-6 dark:text-gray-300 text-gray-600">
                                     <img class="max-w-full h-auto" src="{{@asset('uploads/images/'. $article->image)}}"
                                          alt="Image description">
                                     <figcaption> {{ $article->caption ?? "No caption"  }} </figcaption>
                                 </figure>
-                                <div class="mb-6">
+                                <div class="mb-6 dark:text-gray-300 text-gray-800">
                                     {!! $article->description !!}
                                 </div>
                                 <div
@@ -71,7 +71,8 @@
                                 <div id="comment-form" class="mt-12">
                                     <h4 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100">
                                         LEAVE A REPLY </h4>
-                                    <p class="mb-5">Your email address will not be published</p>
+                                    <p class="mb-5 dark:text-gray-300 text-gray-600">Your email address will not be
+                                        published</p>
                                     <x-comment-form :article="$article"/>
                                 </div>
                             </div>

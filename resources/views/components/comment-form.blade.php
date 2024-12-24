@@ -28,7 +28,7 @@
                     class="form-checkbox h-5 w-5 text-red-500 dark:bg-gray-700 border border-gray-100 dark:border-gray-700 focus:outline-none"
                     id="comment-cookies" name="comment-cookies" type="checkbox"
                     value="yes">
-                <label class="ml-2" for="comment-cookies">
+                <label class="ml-2 dark:text-gray-500 text-gray-600" for="comment-cookies ">
                     Save my name and email in this browser for the next
                     time I comment.
                 </label>

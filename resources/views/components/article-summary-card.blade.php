@@ -1,9 +1,9 @@
 @props(['article'])
 <div class="my-4 text-sm">
     <!--author-->
-    <span class="mr-2 md:mr-4">
+    <span class="mr-2 md:mr-4 dark:text-gray-300 text-gray-600">
         <!-- <i class="fas fa-user me-2"></i> -->
-        <svg class="bi bi-person mr-2 inline-block" width="1rem" height="1rem"
+        <svg class="bi bi-person mr-2 inline-block dark:text-gray-300 text-gray-600" width="1rem" height="1rem"
              viewBox="0 0 16 16"
              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
@@ -12,9 +12,9 @@
         </svg> by <a class="font-semibold" href="#"> {{ $article->author->name }} </a>
     </span>
     <!--date-->
-    <time class="mr-2 md:mr-4" datetime="2020-10-22 10:00">
+    <time class="mr-2 md:mr-4 dark:text-gray-300 text-gray-600" datetime="2020-10-22 10:00">
         <!-- <i class="fas fa-calendar me-2"></i> -->
-        <svg class="bi bi-calendar mr-2 inline-block" width="1rem" height="1rem"
+        <svg class="bi bi-calendar mr-2 inline-block dark:text-gray-300 text-gray-600" width="1rem" height="1rem"
              viewBox="0 0 16 16" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -27,9 +27,9 @@
         {{\Carbon\Carbon::parse($article->created_at)->calendar()}}
     </time>
     <!--view-->
-    <span class="mr-2 md:mr-4">
+    <span class="mr-2 md:mr-4 dark:text-gray-300 text-gray-600">
     <!-- <i class="fas fa-eye me-2"></i> -->
-    <svg class="bi bi-eye mr-2 inline-block" width="1rem" height="1rem"
+    <svg class="bi bi-eye mr-2 inline-block dark:text-gray-300 text-gray-600" width="1rem" height="1rem"
          viewBox="0 0 16 16"
          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd"
