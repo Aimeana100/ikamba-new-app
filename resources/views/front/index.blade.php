@@ -1,18 +1,20 @@
 <x-guest-layout>
+
+    @section('HOME_ACTIVE', 'active')
     <!-- advertisement -->
-    <div class="bg-gray-50 py-4 hidden">
-        <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
-            <div class="mx-auto table text-center text-sm">
-                <a class="uppercase" href="#">Advertisement</a>
-                <a href="#">
-                    <img src="{{@asset('front/src/img/ads/ads_728.jpg" alt="advertisement area')}}">
-                </a>
-            </div>
-        </div>
-    </div>
+    {{--    <div class="bg-gray-50 py-4">--}}
+    {{--        <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">--}}
+    {{--            <div class="mx-auto table text-center text-sm">--}}
+    {{--                <a class="uppercase" href="#">Advertisement</a>--}}
+    {{--                <a href="#">--}}
+    {{--                    <img src="{{@asset('front/src/img/ads/ads_728.jpg" alt="advertisement area')}}">--}}
+    {{--                </a>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 
     <!-- hero big grid -->
-    <div class="bg-white py-6">
+    <div class="py-6 shadow bg-white dark:bg-gray-800">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
             <!-- big grid 1 -->
             <div class="flex flex-row flex-wrap">
@@ -84,13 +86,13 @@
 
 
     <!-- block news -->
-    <div class="bg-white">
+    <div class="shadow bg-gray-100 dark:bg-gray-800">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
             <div class="flex flex-row flex-wrap">
                 <!-- Left -->
                 <div class="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
                     <div class="w-full py-3">
-                        <h2 class="text-gray-800 text-2xl font-bold">
+                        <h2 class="text-gray-800 dark:text-white text-2xl font-bold">
                             <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Latest News
                         </h2>
                     </div>

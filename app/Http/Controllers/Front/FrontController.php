@@ -50,7 +50,8 @@ class FrontController extends Controller
     {
         $category = Category::with('articles.author')->where('slug', $slug)->first();
         $mostPopulars = Article::with('category')->where('published_at', '<>', null)->orderBy('views', 'desc')->take(15)->get();
-        $mostViewed = Category::with('articles')->where('slug', $slug)->first()->articles->sortByDesc('views')->take(1)  [0];
+        $mostViewed = Category::with('articles')->where('slug', $slug)->first()->articles->sortByDesc('views')->first();
+//        dd($mostViewed->slug);
         return view('front.category', compact('category', 'mostViewed', 'mostPopulars'));
     }
 
@@ -91,8 +92,17 @@ class FrontController extends Controller
     public function search(Request $request): View
     {
         $pattern = $request->input('pattern');
+        $query = $request->query();
+        $query['pattern'] = $pattern;
         $mostPopulars = Article::with('category')->orderBy('views', 'desc')->take(15)->get();
         $articles = Article::where('title', 'like', "%$pattern%")->orWhere('description', 'like', "%$pattern%")->orWhere('headlines', 'like', "%$pattern%")->get();
-        return view('front.search', compact('articles', 'mostPopulars', 'pattern'));
+//        return route('front.search.pattern', $pattern)->with(compact('articles', 'mostPopulars', 'pattern'));
+        return view('front.search', compact('articles', 'mostPopulars', 'pattern', 'query'));
+    }
+
+    public function searchPattern(): View
+    {
+        return view('front.search');
+
     }
 }

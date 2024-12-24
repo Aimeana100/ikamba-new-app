@@ -15,6 +15,7 @@ Route::get('/', [FrontController::class, 'index'])->name('front.index');
 Route::get('/articles/category/{categorySlug}', [FrontController::class, 'showCategory'])->name('front.category.articles');
 Route::get('/articles/single/{slug}', [FrontController::class, 'single'])->name('front.single');
 Route::post('/articles/search', [FrontController::class, 'search'])->name('front.search');
+Route::get('/articles/search/{pattern}', [FrontController::class, 'searchPattern'])->name('front.search.pattern');
 Route::post('/articles/comment', [FrontController::class, 'comment'])->name('front.article.comment');
 Route::get('/social-media-share', [SocialShareButtonsController::class]);
 

@@ -8,10 +8,10 @@
                  alt="{{$article->title}}">
         </a>
         <div class="py-0 sm:py-3 pl-3 sm:pl-0">
-            <h3 class="text-lg font-bold leading-tight mb-2">
+            <h3 class="text-lg font-bold leading-tight mb-2 dark:text-gray-300">
                 <a href="{{route('front.single', ['slug' => $article->slug])}}"> {{$article->title}} </a>
             </h3>
-            <p class="hidden md:block text-gray-600 leading-tight mb-2">
+            <p class="hidden md:block dark:text-gray-300 text-gray-600 leading-tight mb-2">
                 {{$article->headlines}}
             </p>
 
@@ -21,7 +21,7 @@
 
             &nbsp -- &nbsp
 
-            <time class="mr-2 md:mr-4" datetime="2020-10-22 10:00">
+            <time class="mr-2 md:mr-4 dark:text-gray-400" datetime="2020-10-22 10:00">
                 <!-- <i class="fas fa-calendar me-2"></i> -->
                 <svg class="bi bi-calendar mr-2 inline-block" width="1rem" height="1rem"
                      viewBox="0 0 16 16" fill="currentColor"

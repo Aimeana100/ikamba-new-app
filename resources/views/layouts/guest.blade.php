@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }" :class="{ 'dark': darkMode }"
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,31 +91,37 @@
 <body class="text-gray-700 pt-9 sm:pt-10">
 <!-- ========== { HEADER }==========  -->
 <header class="fixed top-0 left-0 right-0 z-50 ">
-    <nav class="bg-black">
+    <nav class="border-b-gray-400 border-2 bg-white dark:bg-gray-700">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 ">
             <div class="flex justify-between">
                 <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">
                     <a href="{{route('front.index')}}">
-                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Imbere</span>
+                        <span class="text-3xl leading-normal mb-2 font-bold text-gray-900  dark:text-gray-100 mt-2">Imbere</span>
                     </a>
                 </div>
+
+                <button @click="darkMode = !darkMode" class="p-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                    <span class="border p-1 rounded-full border-gray-600 " x-show="!darkMode">🌙</span>
+                    <span x-show="darkMode">☀️</span>
+                </button>
 
                 <div class="flex flex-row">
                     <!-- nav menu -->
                     <ul class="navbar hidden lg:flex lg:flex-row text-gray-400 text-sm items-center font-bold">
-                        <li class="active relative border-l border-gray-800 hover:bg-gray-900">
-                            <a class="block py-3 px-6 border-b-2 border-transparent" href="{{route('front.index')}}">Home</a>
+                        <li class=" @yield('HOME_ACTIVE') relative border-l border-gray-800 hover:bg-gray-300 dark:hover:bg-gray-900">
+                            <a class="block py-3 px-6 border-b-2 text-gray-900 dark:text-gray-400 border-transparent"
+                               href="{{route('front.index')}}">Home</a>
                         </li>
 
                         @foreach($categories as $category)
 
-                            <li class="dropdown relative border-l border-gray-800 hover:bg-gray-900">
-                                <a class="block py-3 px-6 border-b-2 border-transparent"
+                            <li class="dropdown relative border-l border-gray-800 hover:bg-gray-300 dark:hover:bg-gray-900">
+                                <a class="block py-3 px-6 border-b-2 text-gray-900 dark:text-gray-400 border-transparent"
                                    href="#">{{$category->name}}</a>
 
                                 <ul class="dropdown-menu font-normal absolute left-0 right-auto top-full z-50 border-b-0 text-left bg-white text-gray-700 border border-gray-100"
                                     style="min-width: 12rem;">
-                                    <li class="relative hover:bg-gray-50">
+                                    <li class="relative  hover:bg-gray-300 dark:hover:bg-gray-300">
                                         @foreach($category->children as $subCategory)
                                             <a class="block py-2 px-6 border-b border-gray-100"
                                                href="{{route('front.category.articles', $subCategory->slug)}}">
@@ -126,16 +135,19 @@
                     </ul>
 
                     <!-- search form & mobile nav -->
-                    <div class="flex flex-row items-center text-gray-300">
-                        <div class="search-dropdown relative border-r lg:border-l border-gray-800 hover:bg-gray-900">
-                            <button class="block py-3 px-6 border-b-2 border-transparent">
+                    <div class="flex flex-row items-center hover:text-gray-300  text-gray-300">
+                        <div
+                            class="search-dropdown relative border-r lg:border-l border-gray-800 hover:text-gray-300  hover:bg-gray-900">
+                            <button class="block py-3 px-6 border-b-2 border-transparent hover:text-gray-300 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="open bi bi-search" viewBox="0 0 16 16">
+                                     class="open bi bi-search hover:text-gray-300 text-gray-900 dark:text-gray-300"
+                                     viewBox="0 0 16 16">
                                     <path
                                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="close bi bi-x-lg" viewBox="0 0 16 16">
+                                     class="close bi bi-x-lg hover:text-gray-300  text-gray-900 dark:text-gray-300"
+                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                           d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                                     <path fill-rule="evenodd"
@@ -168,10 +180,12 @@
                             </div>
                         </div>
 
-                        <div class="relative hover:bg-gray-800 block lg:hidden">
-                            <button type="button" class="menu-mobile block py-3 px-6 border-b-2 border-transparent">
+                        <div class="relative hover:bg-gray-400 hover:rounded  dark:hover:bg-gray-800 block lg:hidden">
+                            <button type="button"
+                                    class="menu-mobile block py-3 px-6 border-b-2 border-transparent text-gray-900 dark:text-gray-300">
                                 <span class="sr-only">Mobile menu</span>
-                                <svg class="inline-block h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                <svg class="inline-block h-6 w-6 mr-2 text-gray-900 dark:text-gray-300"
+                                     xmlns="http://www.w3.org/2000/svg" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M4 6h16M4 12h16M4 18h16"></path>
@@ -208,56 +222,39 @@
         <div class="mb-auto">
             <!--navigation-->
             <nav class="relative flex flex-wrap">
-                <div class="text-center py-4 w-full font-bold border-b border-gray-100">Imbere</div>
+                <div class="text-center py-4 w-full font-bold border-b hover:bg-gray-300 dark:hover:bg-gray-900">
+                    Imbere
+                </div>
                 <ul id="side-menu" class="w-full float-none flex flex-col">
+
                     <li class="relative">
                         <a href="{{route('front.index')}}"
-                           class="block py-2 px-5 border-b border-gray-100 hover:bg-gray-50">Home</a>
+                           class="block py-2 px-5 border-b border-gray-100 dark:border-gray-600 text-gray-900 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-900">Home</a>
                     </li>
 
                     <!-- dropdown with submenu-->
-                    {{--                    <li class="dropdown relative">--}}
-                    {{--                        <a class="block py-2 px-5 border-b border-gray-100 hover:bg-gray-50" href="javascript:;">--}}
-                    {{--                            News--}}
-                    {{--                        </a>--}}
 
-                    {{--                        <!-- dropdown menu -->--}}
-                    {{--                        <ul class="dropdown-menu block rounded rounded-t-none top-full z-50 ml-4 py-0.5 text-left bg-white dark:bg-gray-800 mb-4"--}}
-                    {{--                            style="min-width: 12rem">--}}
-                    {{--                            <!--submenu-->--}}
-                    {{--                            <li class="subdropdown relative">--}}
-                    {{--                                <a class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50"--}}
-                    {{--                                   href="javascript:;">--}}
-                    {{--                                    Dropdown item--}}
-                    {{--                                </a>--}}
-
-                    {{--                                <!--dropdown submenu-->--}}
-                    {{--                                <ul class="dropdown-menu block rounded rounded-t-none top-full z-50 ml-4 py-0.5 text-left bg-white dark:bg-gray-800"--}}
-                    {{--                                    style="min-width: 12rem">--}}
-                    {{--                                    <li><a class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50"--}}
-                    {{--                                           href="#">Dropdown sub item</a></li>--}}
-                    {{--                                    <li><a class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50"--}}
-                    {{--                                           href="#">Dropdown sub item</a></li>--}}
-                    {{--                                    <li><a class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50"--}}
-                    {{--                                           href="#">Dropdown sub item</a></li>--}}
-                    {{--                                    <li><a class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50"--}}
-                    {{--                                           href="#">Dropdown sub item</a></li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </li><!--end submenu-->--}}
-                    {{--                            <li class="relative"><a--}}
-                    {{--                                    class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50" href="#">Dropdown--}}
-                    {{--                                    item</a></li>--}}
-                    {{--                            <li class="relative"><a--}}
-                    {{--                                    class="block w-full py-2 px-5 border-b border-gray-100 hover:bg-gray-50" href="#">Dropdown--}}
-                    {{--                                    item</a></li>--}}
-                    {{--                        </ul>--}}
-                    {{--                    </li>--}}
                     @foreach($categories as $category)
-                        <li class="relative">
-                            <a href="{{route('front.category.articles', $category->slug)}}"
-                               class="block py-2 px-5 border-b border-gray-100 hover:bg-gray-50">{{$category->name}}</a>
+                        <li class="dropdown relative">
+                            <a class="block py-2 px-5 border-b  border-gray-100 dark:border-gray-600 text-gray-900 dark:text-gray-400 hover:bg-gray-50"
+                               href="javascript:;">
+                                {{ $category->name }}
+                            </a>
+
+
+                            <!-- dropdown menu -->
+                            <ul class="dropdown-menu block rounded rounded-t-none top-full z-50 ml-4 py-0.5 text-left bg-white dark:bg-gray-800 mb-4"
+                                style="min-width: 12rem">
+                                @foreach($category->children as $subCategory)
+
+                                    <li class="relative"><a
+                                            class="block w-full py-2 px-5 border-b  border-gray-100 dark:border-gray-600 text-gray-900 dark:text-gray-400  hover:bg-gray-50"
+                                            href="#"> {{ $subCategory->name }} </a></li>
+                                @endforeach
+                            </ul>
                         </li>
                     @endforeach
+
                 </ul>
             </nav>
         </div>
@@ -284,7 +281,7 @@
 </main><!-- end main -->
 
 <!-- =========={ FOOTER }==========  -->
-<footer class="bg-black text-gray-400">
+<footer class=" border-gray-400 border-2 bg-white text-gray-400 dark:bg-gray-700">
     <!--Footer content-->
     <div id="footer-content" class="relative pt-8 xl:pt-16 pb-6 xl:pb-12">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 overflow-hidden">
@@ -292,7 +289,7 @@
                 <div class="flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
                     <div class="flex items-center mb-2">
                         <a href="{{route('front.index')}}" class="text-2xl font-bold text-white">
-                            <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">Imbere</span>
+                            <span class="text-3xl leading-normal mb-2 font-bold text-gray-900 dark:text-gray-100 mt-2">Imbere</span>
                         </a>
 
                         <!-- <img src="{{@asset('front/src/img-min/logo.png" alt="LOGO')}}"> -->
@@ -301,7 +298,8 @@
                     <ul class="space-x-3 mt-6 mb-6 Lg:mb-0">
                         <!--facebook-->
                         <li class="inline-block">
-                            <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer"
+                            <a target="_blank" class=" hover:text-gray-700 dark:hover:text-gray-100"
+                               rel="noopener noreferrer"
                                href="https://facebook.com" title="Facebook">
                                 <!-- <i class="fab fa-facebook fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
@@ -313,7 +311,8 @@
                         </li>
                         <!--twitter-->
                         <li class="inline-block">
-                            <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer"
+                            <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
+                               rel="noopener noreferrer"
                                href="https://twitter.com" title="Twitter">
                                 <!-- <i class="fab fa-twitter fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
@@ -325,7 +324,8 @@
                         </li>
                         <!--youtube-->
                         <li class="inline-block">
-                            <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer"
+                            <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
+                               rel="noopener noreferrer"
                                href="https://youtube.com" title="Youtube">
                                 <!-- <i class="fab fa-youtube fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
@@ -337,7 +337,8 @@
                         </li>
                         <!--instagram-->
                         <li class="inline-block">
-                            <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer"
+                            <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
+                               rel="noopener noreferrer"
                                href="https://instagram.com" title="Instagram">
                                 <!-- <i class="fab fa-instagram fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
@@ -356,36 +357,47 @@
                 <div class="flex-shrink max-w-full w-full lg:w-3/5 px-3">
                     <div class="flex flex-wrap flex-row">
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100">IBYO DUKORA</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100">IBYO
+                                DUKORA</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#"> Amakuru agezweho </a></li>
-                                <li class="py-1 hover:text-white"><a href="#"> kwamamaza </a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Online TV Shows</a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Amakuru
+                                        agezweho </a>
+                                </li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> kwamamaza </a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Online TV Shows</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> Main Links </h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100"> Main
+                                Links </h4>
                             <ul>
-                                {{--                                <li class="py-1 hover:text-white"><a href="{{route('login')}}">Login</a></li>--}}
+                                {{--                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="{{route('login')}}">Login</a></li>--}}
 
-                                <li class="py-1 hover:text-white"><a href="{{route('dashboard')}}"> Dashboard </a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a
+                                        href="{{route('dashboard')}}">
+                                        Dashboard </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> UBUFASHA</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100">
+                                UBUFASHA</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#"> +250733149386 </a></li>
-                                <li class="py-1 hover:text-white"><a href="mailto:imbereonlinenewspaper@gmail">
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> +250733149386 </a>
+                                </li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a
+                                        href="mailto:imbereonlinenewspaper@gmail">
                                         Email us: IMBERE.COM </a></li>
                             </ul>
                         </div>
                         <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
-                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-100"> DUKURIKIRE</h4>
+                            <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100">
+                                DUKURIKIRE</h4>
                             <ul>
-                                <li class="py-1 hover:text-white"><a href="#"> Instagram </a></li>
-                                <li class="py-1 hover:text-white"><a href="#">YouTube</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Facebook</a></li>
-                                <li class="py-1 hover:text-white"><a href="#">Twitter</a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Instagram </a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">YouTube</a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Facebook</a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Twitter</a></li>
 
                             </ul>
                         </div>
@@ -432,7 +444,7 @@
 
 
 <!-- Production js -->
-<!-- <script src="dist/js/scripts.js"></script> -->
+{{-- <script src="dist/js/scripts.js"></script>--}}
 </body>
 
 </html>
