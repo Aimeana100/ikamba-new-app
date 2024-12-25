@@ -29,10 +29,10 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
     <!-- Development css -->
-    <link rel="stylesheet" href="{{@asset('front/src/css/style.css')}}">
+    {{--    <link rel="stylesheet" href="{{@asset('front/src/css/style.css')}}">--}}
 
     <!-- Production css -->
-    <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="{{@asset('front/dist/css/style.css')}}">
 
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
