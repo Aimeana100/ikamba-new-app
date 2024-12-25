@@ -439,12 +439,12 @@
     src="{{@asset('front/src/vendors/@splidejs/splide-extension-video/dist/js/splide-extension-video.min.js')}}"></script>
 
 <!-- Start development js -->
-<script src="{{@asset('front/src/js/theme.js')}}"></script>
+{{--<script src="{{@asset('front/src/js/theme.js')}}"></script>--}}
 <!-- End development js -->
 
 
 <!-- Production js -->
-{{-- <script src="dist/js/scripts.js"></script>--}}
+<script src="{{@asset('front/dist/js/scripts.js')}}"></script>
 </body>
 
 </html>
