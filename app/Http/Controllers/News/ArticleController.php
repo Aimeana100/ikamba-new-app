@@ -67,7 +67,7 @@ class ArticleController extends Controller
 
         $article = new Article($request->all());
         $article->user_id = Auth::user()->id;
-        $this->extracted($request, $article);
+        $this->extracted($request, $article, true);
         if ($request->has('priority')) {
             Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
         }
@@ -122,7 +122,7 @@ class ArticleController extends Controller
         date_default_timezone_set('Africa/kigali');
 
         $article = Article::findOrFail($request->input('id'));
-        $this->extracted($request, $article);
+        $this->extracted($request, $article, true);
         if ($request->has('priority')) {
             Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
             $article->priority = $request->input('priority');
