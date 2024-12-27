@@ -5,6 +5,7 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class ArticleController extends Controller
     public function index(Request $request): View
     {
         $searchTerm = $request->input('search') || '';
-        $articles = Article::with('tags', 'category', 'author')->where('status', true);
+        $articles = Article::with('tags', 'comments', 'category', 'author')->where('status', true);
         if (Auth::user()->isJournalist()) {
             $articles = $articles->where('user_id', Auth::user()->id);
         }
@@ -209,4 +210,9 @@ class ArticleController extends Controller
         }
     }
 
+    public function fetchComments($id): JsonResponse
+    {
+        $comments = Comment::where('article_id', $id)->get();
+        return response()->json($comments, 200);
+    }
 }

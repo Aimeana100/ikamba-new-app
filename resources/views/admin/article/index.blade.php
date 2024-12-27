@@ -76,6 +76,9 @@
                                             {{--                                                    <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">--}}
                                             {{--                                                        Archive status--}}
                                             {{--                                                    </th>--}}
+                                            <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
+                                                Comments
+                                            </th>
                                             <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
                                                 Options
                                             </th>
@@ -128,6 +131,16 @@
                                                 {{--                                                                {{ $article->archive ? 'Archived' : 'Not archived' }}--}}
                                                 {{--                                                            </div>--}}
                                                 {{--                                                        </td>--}}
+
+                                                <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                                    <div class="mt-2 align-middle">
+                                                        <button onclick="showCommentsModal({{ $article->id }})"
+                                                                class="px-4 py-1 text-sm font-semibold text-blue-500 bg-gray-100 rounded hover:bg-gray-200">
+                                                            View Comments ({{ $article->comments->count() }})
+                                                        </button>
+                                                    </div>
+                                                </td>
+
                                                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                                                     <div class="w-3/4 mx-auto">
                                                         <div class="ml-auto text-right">
@@ -192,7 +205,33 @@
         </div>
 
 
+        <!-- Modal Template -->
+        <div id="comments-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-gray-900 bg-opacity-50">
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold">Article Comments</h2>
+                        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-800">&times;</button>
+                    </div>
+                    <!-- Comments Content -->
+                    <div id="comments-content" class="space-y-4 overflow-y-auto max-h-80">
+                        <!-- Comments will be dynamically loaded here -->
+                    </div>
+                    <!-- Close Button -->
+                    <div class="mt-4 text-right">
+                        <button onclick="closeModal()"
+                                class="px-4 py-2 text-white bg-gray-800 rounded hover:bg-gray-900">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
     <script>
         // JavaScript to open the modal and set the form action
         function confirmDelete(url) {
@@ -213,6 +252,56 @@
             }
 
         });
+
+        // JavaScript for Modal and Dynamic Comments
+
+        function showCommentsModal(articleId) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Get CSRF token
+
+            fetch(`/admin/article/${articleId}/comments`, {
+                method: 'GET', // Use 'POST' if needed
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in the headers
+                },
+                credentials: 'include' // Ensure cookies (authentication) are sent with the request
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Unauthorized or session expired');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const commentsContent = document.getElementById('comments-content');
+                    commentsContent.innerHTML = ''; // Clear existing comments
+
+                    if (data.length > 0) {
+                        data.forEach(comment => {
+                            commentsContent.innerHTML += `
+                    <div class="p-3 border mb-1 rounded-md bg-gray-50">
+                        <strong>${comment.name}</strong>:
+                        <p class="text-gray-600">${comment.comment}</p>
+                        <small class="text-gray-400">${moment(comment.created_at).fromNow()}</small>
+                    </div>`;
+                        });
+                    } else {
+                        commentsContent.innerHTML = '<p class="text-center text-gray-500">No comments available.</p>';
+                    }
+
+                    // Show modal
+                    document.getElementById('comments-modal').classList.remove('hidden');
+                })
+                .catch(error => {
+                    console.error('Error fetching comments:', error);
+                    alert('Unable to fetch comments. Please try again.');
+                });
+        }
+
+
+        function closeModal() {
+            document.getElementById('comments-modal').classList.add('hidden');
+        }
 
     </script>
 </x-app-layout>
