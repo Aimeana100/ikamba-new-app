@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,journalist'])->group(function () {
     Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article');
+//    Route::get('/admin/article/{id}/comments', [ArticleController::class, 'fetchComments'])->name('admin.article.comments');
+
     Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
     Route::get('/admin/article/edit/{slug}', [ArticleController::class, 'edit'])->name('admin.article.edit');
     Route::get('/admin/article/delete/{id}', [ArticleController::class, 'delete'])->name('admin.article.delete');
@@ -78,7 +80,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,
     Route::post('/admin/article/store', [ArticleController::class, 'store'])->name('admin.article.store');
     Route::patch('/admin/article/update', [ArticleController::class, 'update'])->name('admin.article.update');
     Route::post('/admin/article/upload/image', [ArticleController::class, 'uploadImage'])->name('admin.articles.image.upload');
-
 });
+Route::get('/admin/article/{id}/comments', [ArticleController::class, 'fetchComments'])->name('admin.article.comments');
 
 require __DIR__ . '/auth.php';
