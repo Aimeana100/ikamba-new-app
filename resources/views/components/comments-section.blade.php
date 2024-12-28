@@ -13,12 +13,13 @@
                            href="#" target="_blank"> {{$comment->name}} </a>
                         <span class="md:float-right text-sm">
                               <time
+                                  class="text-gray-800 dark:text-gray-500"
                                   datetime="2020-10-27"> {{ \Carbon\Carbon::parse($comment->commented_at)->calendar() }}</time>
                             </span>
                     </div>
                 </footer>
                 <div>
-                    <p>{{ $comment->comment }}  </p>
+                    <p class="text-gray-800 dark:text-gray-400">{{ $comment->comment }}  </p>
                 </div>
             </div>
         </li>
