@@ -74,7 +74,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,
 
     Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
     Route::get('/admin/article/edit/{slug}', [ArticleController::class, 'edit'])->name('admin.article.edit');
-    Route::get('/admin/article/delete/{id}', [ArticleController::class, 'delete'])->name('admin.article.delete');
+    Route::post('/admin/article/delete/{id}', [ArticleController::class, 'delete'])->name('admin.article.delete');
     Route::get('/admin/article/review/{slug}', [ArticleController::class, 'review'])->name('admin.article.review');
     Route::patch('/admin/article/publish/{slug}', [ArticleController::class, 'publish'])->name('admin.article.publish');
     Route::post('/admin/article/store', [ArticleController::class, 'store'])->name('admin.article.store');
