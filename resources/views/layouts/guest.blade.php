@@ -4,6 +4,12 @@
       x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
 >
 <head>
+
+    {{--    Goodgle add sense--}}
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8342568204660890"
+            crossorigin="anonymous"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,10 +51,6 @@
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    {{--    Goodgle add sense--}}
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8342568204660890"
-            crossorigin="anonymous"></script>
 
     <style>
         .social-btn-sp #social-links {
@@ -91,7 +93,7 @@
 <body class="text-gray-700 pt-9 sm:pt-10">
 <!-- ========== { HEADER }==========  -->
 <header class="fixed top-0 left-0 right-0 z-50 ">
-    <nav class="border-b-gray-400 border-2 bg-white dark:bg-gray-700">
+    <nav class="border-gray-300 dark:border-gray-600 shadow-md border-b bg-gray-100 dark:bg-gray-700">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 ">
             <div class="flex justify-between">
                 <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">
@@ -162,7 +164,7 @@
                                     @method('post')
                                     <div class="flex flex-wrap items-stretch w-full relative">
                                         <input type="text"
-                                               class="flex-shrink flex-grow flex-shrink max-w-full leading-5 w-px flex-1 relative py-2 px-5 text-gray-800 bg-white border border-gray-300 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
+                                               class="flex-grow flex-shrink max-w-full leading-5 w-px flex-1 relative py-2 px-5 text-gray-800 bg-white border border-gray-300 overflow-x-auto focus:outline-none focus:border-gray-400 focus:ring-0 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600"
                                                name="pattern" placeholder="Search..." aria-label="search">
                                         <div class="flex -mr-px">
                                             <button
@@ -281,7 +283,7 @@
 </main><!-- end main -->
 
 <!-- =========={ FOOTER }==========  -->
-<footer class=" border-gray-400 border-2 bg-white text-gray-400 dark:bg-gray-700">
+<footer class="shadow-md border-gray-700 border-t-2 bg-white text-gray-400 dark:bg-gray-700">
     <!--Footer content-->
     <div id="footer-content" class="relative pt-8 xl:pt-16 pb-6 xl:pb-12">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 overflow-hidden">

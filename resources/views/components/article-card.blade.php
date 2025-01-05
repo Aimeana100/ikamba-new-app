@@ -33,7 +33,7 @@
                           d="M6.5 7a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z"
                           clip-rule="evenodd"></path>
                 </svg>
-                {{\Carbon\Carbon::parse($article->created_at)->calendar()}}
+                {{\Carbon\Carbon::parse($article->published_at)->calendar()}}
             </time>
         </div>
     </div>

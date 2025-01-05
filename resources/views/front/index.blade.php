@@ -58,13 +58,13 @@
 
                                 <article class="flex-shrink max-w-full w-full sm:w-1/2">
                                     <div class="relative hover-img max-h-48 overflow-hidden">
-                                        <a href="#">
+                                        <a href="{{route('front.single', ['slug' => $article->slug])}}">
                                             <img class="max-w-full w-full mx-auto h-auto"
                                                  src="{{@asset( 'uploads/images/'. $article->image)}}"
                                                  alt="Image description">
                                         </a>
                                         <div class="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-cover">
-                                            <a href="#">
+                                            <a href="{{route('front.single', ['slug' => $article->slug])}}">
                                                 <h2 class="text-lg font-bold capitalize leading-tight text-white mb-1"> {{ $article->title }} </h2>
                                             </a>
                                             <div class="pt-1">
