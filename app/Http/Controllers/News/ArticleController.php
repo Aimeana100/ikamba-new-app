@@ -36,7 +36,7 @@ class ArticleController extends Controller
                 ->orWhere('headlines', 'like', '%' . $searchTerm . '%')
                 ->orWhere('caption', 'like', '%' . $searchTerm . '%');
         }
-        $articles = $articles->orderBy('priority', 'asc')->get();
+        $articles = $articles->orderBy('priority', 'asc')->paginate(10);
 
 //        $articles = Article::with('tags', 'category', 'author')->where('status', true)->get();
         return view('admin.article.index', compact('articles', 'searchTerm'));
@@ -173,10 +173,19 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $article->status = false;
-        $article->save();
+//        $article->save();
+        $article->delete();
+//        delete an image if it exists
+        if ($article->image) {
+            $imagePath = env('APP_ENV') == 'local' ? public_path('uploads/images/' . $article->image) : realpath('../public_html/uploads/images/' . $article->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         return redirect()->route('admin.article')
             ->with('success', 'Article deleted successfully.');
     }
+
 
     /**
      * @param Request $request

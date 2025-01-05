@@ -44,8 +44,6 @@
                                 </div>
                             </div>
                             <div class="flex-auto p-4">
-                                {{--                                <div class="flex flex-wrap">--}}
-                                {{--                                    <div class="flex-auto p-6 px-0 pb-2">--}}
 
                                 <x-success-message-display :successSession="session('success')"/>
 
@@ -64,13 +62,13 @@
                                             <th class="px-2 py-3 pl-2 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
                                                 Desc. Image
                                             </th>
-                                            <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
+                                            <th class="px-2 py-3 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
                                                 Category
                                             </th>
-                                            <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
+                                            <th class="px-2 py-3 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
                                                 Priority
                                             </th>
-                                            <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
+                                            <th class="px-2 py-3 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">
                                                 Published
                                             </th>
                                             {{--                                                    <th class="px-2 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-sm whitespace-nowrap border-b-gray-200 text-black opacity-70">--}}
@@ -171,9 +169,10 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+
+
+                                    {{ $articles->links() }}
                                 </div>
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                             </div>
                         </div>
                     </div>

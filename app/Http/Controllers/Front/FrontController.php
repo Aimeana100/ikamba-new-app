@@ -48,11 +48,19 @@ class FrontController extends Controller
 
     public function showCategory($slug): View
     {
-        $category = Category::with('articles.author')->where('slug', $slug)->first();
+//        get category with published articles and authors where slug is equal to the slug passed in the url,
+
+        $category = Category::where('slug', $slug)->first();
+        $articles = Article::with(['author'])->where('category_id', $category->id)->where('published_at', '<>', null)->paginate(9);
+
+//        dd($articles);
+
         $mostPopulars = Article::with('category')->where('published_at', '<>', null)->orderBy('views', 'desc')->take(15)->get();
-        $mostViewed = Category::with('articles')->where('slug', $slug)->first()->articles->sortByDesc('views')->first();
-//        dd($mostViewed->slug);
-        return view('front.category', compact('category', 'mostViewed', 'mostPopulars'));
+        $mostViewed = Category::with(['articles' => function ($query) {
+            $query->where('published_at', '<>', null);
+        }])->where('slug', $slug)->first()->articles->sortByDesc('views')->first();
+
+        return view('front.category', compact('category', 'mostViewed', 'mostPopulars', 'articles'));
     }
 
     public function single(Request $request, $slug): View

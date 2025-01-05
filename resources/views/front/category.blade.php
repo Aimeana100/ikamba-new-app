@@ -49,10 +49,12 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach($category->articles as $latestStory)
+                            @foreach($articles as $latestStory)
                                 {{--call article-card componet and pass the $latestStory props   --}}
                                 <x-article-card :article="$latestStory"/>
                             @endforeach
+                            {{ $articles->links() }}
+
                         </div>
                     @endif
                 </div>
@@ -70,6 +72,19 @@
                                 <img class="mx-auto" src="{{@asset('front/src/img/ads/250.jpg')}}"
                                      alt="advertisement area">
                             </a>
+                            {{--                            <div class="w-full text-center">--}}
+                            {{--                                <script async--}}
+                            {{--                                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"--}}
+                            {{--                                        crossorigin="anonymous"></script>--}}
+                            {{--                                <!-- Homepage Leaderboard -->--}}
+                            {{--                                <ins class="adsbygoogle"--}}
+                            {{--                                     style="display:inline-block;width:728px;height:90px"--}}
+                            {{--                                     data-ad-client="ca-pub-1234567890123456"--}}
+                            {{--                                     data-ad-slot="1234567890"></ins>--}}
+                            {{--                                <script>--}}
+                            {{--                                    (adsbygoogle = window.adsbygoogle || []).push({});--}}
+                            {{--                                </script>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
                 </div>
