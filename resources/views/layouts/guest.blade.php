@@ -93,7 +93,7 @@
 <body class="text-gray-700 pt-9 sm:pt-10">
 <!-- ========== { HEADER }==========  -->
 <header class="fixed top-0 left-0 right-0 z-50 ">
-    <nav class="border-gray-300 dark:border-gray-600 shadow-md border-b bg-gray-100 dark:bg-gray-700">
+    <nav class="border-gray-300 dark:border-gray-600 shadow-xl shadow-black	 border-b bg-gray-100 dark:bg-gray-700">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 ">
             <div class="flex justify-between">
                 <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">
