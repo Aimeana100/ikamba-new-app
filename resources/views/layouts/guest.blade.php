@@ -251,7 +251,8 @@
 
                                     <li class="relative"><a
                                             class="block w-full py-2 px-5 border-b  border-gray-100 dark:border-gray-600 text-gray-900 dark:text-gray-400  hover:bg-gray-50"
-                                            href="#"> {{ $subCategory->name }} </a></li>
+                                            href="{{route('front.category.articles', $subCategory->slug)}}"> {{ $subCategory->name }} </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
