@@ -1,6 +1,6 @@
 @props(['comments'])
 
-<ol class="mb-4">
+<ol class="mb-4 ">
     @foreach($comments as $comment)
         <li class="py-2 mt-6">
             <div class="pb-4 border-b border-gray-200 dark:border-gray-600 border-dashed">
