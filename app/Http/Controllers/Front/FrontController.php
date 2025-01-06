@@ -23,31 +23,16 @@ class FrontController extends Controller
 
         // If less than 5 articles are found, fetch additional articles
         if ($homeArticles->count() < 5) {
-            // Get IDs of already fetched articles
-            $existingIds = $homeArticles->pluck('id');
-
-            // Fetch latest articles excluding already fetched ones
-            $latestArticles = Article::with('category')
-                ->whereNotNull('published_at')
-                ->whereNotIn('id', $existingIds) // Exclude existing articles
-                ->latest()
-                ->take(10) // Fetch only what might be needed
-                ->get();
-
-            // Update the existing IDs after merging the latest articles
-            $existingIds = $existingIds->merge($latestArticles->pluck('id'));
 
             // Fetch most viewed articles excluding already fetched ones
             $mostViewedArticles = Article::with('category')
                 ->whereNotNull('published_at')
-                ->whereNotIn('id', $existingIds) // Exclude existing articles
                 ->orderBy('views', 'DESC')
                 ->take(10) // Fetch only what might be needed
                 ->get();
 
             // Merge and remove duplicates
             $homeArticles = $homeArticles
-                ->merge($latestArticles)
                 ->merge($mostViewedArticles)
                 ->unique('id'); // Ensure uniqueness by ID
         }
@@ -55,9 +40,12 @@ class FrontController extends Controller
         // Limit to 5 items
         $homeArticles = $homeArticles->take(5);
 
-        // Fetch latest stories
+        // Get IDs of already fetched articles
+        $existingIds = $homeArticles->pluck('id');
+        // Fetch latest articles excluding already fetched ones
         $latestStories = Article::with('category')
             ->whereNotNull('published_at')
+            ->whereNotIn('id', $existingIds) // Exclude existing articles
             ->latest()
             ->take(9)
             ->get();
