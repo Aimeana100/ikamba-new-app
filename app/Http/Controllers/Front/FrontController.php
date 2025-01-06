@@ -14,7 +14,7 @@ class FrontController extends Controller
     public function index(): View
     {
         $latestStories = Article::with('category')->where('published_at', '<>', null)->latest()->take(6)->get();
-        $homeArticles = Article::with('category')->where('priority', '<=', 5)->Where('published_at', '<>', null)->orderBy('created_at', 'ASC')->get(); // select articles where priority is 1 to 5  and order by updated_at
+        $homeArticles = Article::with('category')->where('priority', '>', 0)->Where('published_at', '<>', null)->orderBy('published_at', 'DESC')->orderBy('priority', 'ASC')->get(); // select articles where priority is 1 to 5  and order by updated_at
         if ($homeArticles->count() < 5) {
 //        find the latest and most viewed articles that are not fetched in homeArticles and append to homeArticles to try filling 5 items in the array and make sure the array doesn't exceed 5 items
             $latestArticles = Article::with('category')->where('published_at', '<>', null)->latest()->get();
