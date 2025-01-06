@@ -13,22 +13,58 @@ class FrontController extends Controller
 {
     public function index(): View
     {
-        $latestStories = Article::with('category')->where('published_at', '<>', null)->latest()->take(6)->get();
-        $homeArticles = Article::with('category')->where('priority', '>', 0)->Where('published_at', '<>', null)->orderBy('published_at', 'DESC')->orderBy('priority', 'ASC')->get(); // select articles where priority is 1 to 5  and order by updated_at
+        // Fetch home articles based on priority and publication date
+        $homeArticles = Article::with('category')
+            ->where('priority', '>', 0)
+            ->whereNotNull('published_at')
+            ->orderBy('priority', 'ASC')
+            ->orderBy('published_at', 'DESC')
+            ->get();
+
+        // If less than 5 articles are found, fetch additional articles
         if ($homeArticles->count() < 5) {
-//        find the latest and most viewed articles that are not fetched in homeArticles and append to homeArticles to try filling 5 items in the array and make sure the array doesn't exceed 5 items
-            $latestArticles = Article::with('category')->where('published_at', '<>', null)->latest()->get();
-            $mostViewedArticles = Article::with('category')->where('published_at', '<>', null)->orderBy('views', 'desc')->get();
-            $articles = $latestArticles->merge($mostViewedArticles)->unique();
-            $homeArticles = $homeArticles->merge($articles)->unique();
+            // Get IDs of already fetched articles
+            $existingIds = $homeArticles->pluck('id');
+
+            // Fetch latest articles excluding already fetched ones
+            $latestArticles = Article::with('category')
+                ->whereNotNull('published_at')
+                ->whereNotIn('id', $existingIds) // Exclude existing articles
+                ->latest()
+                ->take(10) // Fetch only what might be needed
+                ->get();
+
+            // Update the existing IDs after merging the latest articles
+            $existingIds = $existingIds->merge($latestArticles->pluck('id'));
+
+            // Fetch most viewed articles excluding already fetched ones
+            $mostViewedArticles = Article::with('category')
+                ->whereNotNull('published_at')
+                ->whereNotIn('id', $existingIds) // Exclude existing articles
+                ->orderBy('views', 'DESC')
+                ->take(10) // Fetch only what might be needed
+                ->get();
+
+            // Merge and remove duplicates
+            $homeArticles = $homeArticles
+                ->merge($latestArticles)
+                ->merge($mostViewedArticles)
+                ->unique('id'); // Ensure uniqueness by ID
         }
-//        take first 5 items in the array
+
+        // Limit to 5 items
         $homeArticles = $homeArticles->take(5);
 
-//        dd($homeArticles);
+        // Fetch latest stories
+        $latestStories = Article::with('category')
+            ->whereNotNull('published_at')
+            ->latest()
+            ->take(9)
+            ->get();
 
         return view('front.index', compact('latestStories', 'homeArticles'));
     }
+
 
     public function about(): View
     {
