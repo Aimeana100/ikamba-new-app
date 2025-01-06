@@ -18,7 +18,7 @@
                 <!-- Left -->
                 <div class="flex-shrink max-w-full w-full lg:w-2/3  overflow-hidden">
                     <div class="w-full py-3">
-                        <h2 class="text-gray-800 text-2xl font-bold">
+                        <h2 class="text-gray-800 dark:text-gray-300 text-2xl font-bold">
                             <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span> {{ $category->name }}
                         </h2>
                     </div>
@@ -35,7 +35,7 @@
                                     <div class="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
                                         <!--title-->
                                         <a href="{{route('front.single', ['slug' => $mostViewed->slug])}}">
-                                            <h2 class="text-3xl font-bold capitalize text-white mb-3"> {{$mostViewed->title}}</h2>
+                                            <h2 class="text-2xl lg:text-3xl font-bold capitalize text-white mb-3"> {{$mostViewed->title}}</h2>
                                         </a>
                                         <p class="text-gray-100 hidden sm:inline-block">{{$mostViewed->headlines}}</p>
                                         <!-- author and date -->
@@ -59,7 +59,7 @@
                     @endif
                 </div>
                 <!-- right -->
-                <div class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
+                <div class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last">
                     <x-most-popular-card :mostPopulars="$mostPopulars"/>
                     <!-- advertisement -->
                     @php($ads = ['image' => @asset('front/src/img/ads/250.jpg')])
