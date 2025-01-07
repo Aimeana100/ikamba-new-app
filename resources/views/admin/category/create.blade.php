@@ -26,7 +26,7 @@
                             <div class="container z-10">
                                 <div class="flex flex-wrap mt-0 -mx-3">
                                     <div
-                                        class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 ">
+                                        class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-10/12 ">
 
                                         <div class="flex-auto p-6">
                                             <x-error-display :errors="$errors->any()"/>
@@ -74,6 +74,7 @@
                                                     <select
                                                         id="parent_category"
                                                         name="parent_category"
+                                                        {{--                                                        required--}}
                                                         class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
                                                         aria-describedby="email-addon">
                                                         <option value="" selected disabled>Select Parent Category
@@ -107,8 +108,7 @@
     {{--    toogle functions of is_main option and parent category --}}
     <script>
         const categorySelect = document.getElementById('parent_category');
-
-        // parentCategoryDiv.style.display = 'none';
+        const isMain = document.querySelector('select[name="is_main"]');
 
         isMain.addEventListener('change', function () {
             categorySelect.disabled = isMain.value === '1';
