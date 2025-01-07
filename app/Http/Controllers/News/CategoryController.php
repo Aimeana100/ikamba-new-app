@@ -14,10 +14,20 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categories = Category::Where('is_active', true)->with(['articles', 'children'])->get();
-        return view('admin.category.index', compact('categories'));
+        $categoryStatus = $request->status;
+        $is_main = $categoryStatus === 'main-category';
+
+        $categories = Category::Where('is_active', true)->with(['articles', 'children']);
+
+        if ($categoryStatus && $categoryStatus !== 'all') {
+            $categories = $categories->where('is_main', $is_main);
+        } else {
+            $is_main = 'all';
+        }
+        $categories = $categories->get();
+        return view('admin.category.index', compact('categories', 'is_main'));
     }
 
     public function create(Request $request): View

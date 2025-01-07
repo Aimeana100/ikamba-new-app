@@ -19,11 +19,8 @@ Route::get('/articles/search/{pattern}', [FrontController::class, 'searchPattern
 Route::post('/articles/comment', [FrontController::class, 'comment'])->name('front.article.comment');
 Route::get('/social-media-share', [SocialShareButtonsController::class]);
 
-//Route::get('/about', [FrontController::class, 'about'])->name('front.about');
 
-//Route::middleware(['auth', 'verified'])->group(function () {
-//});
-
+//User Routes
 Route::middleware(['auth', RoleMiddleware::class . ':primary_admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -39,6 +36,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,
 });
 
 
+//category routes
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category')->middleware(RoleMiddleware::class . ':journalist,primary_admin,chief_editor');
 Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor'])->group(function () {
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
