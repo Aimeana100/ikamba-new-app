@@ -42,11 +42,16 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request): RedirectResponse
     {
-        if ($request->input('is_main') == 1 && $request->input('parent_category')) {
-            return redirect()->back()->with('error', 'Main category cannot have parent category');
-        }
+        // Validate parent_category based on is_main value
+        $request->validate([
+            'is_main' => 'required|boolean',
+            'parent_category' => 'required_if:is_main,0|nullable|exists:categories,id',
+        ], [
+            'parent_category.required_if' => 'Parent category is required when the category is not a main category.',
+        ]);
+        
 
-        $category = Category::create([
+        Category::create([
             'name' => $request->input('name'),
             'slug' => Str::slug($request->input('name')),
             'is_main' => $request->input('is_main'),
