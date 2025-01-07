@@ -15,7 +15,31 @@
                                 class="p-4 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                                 <div class="flex flex-wrap -mx-3">
                                     <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                        <h6 class="mb-0">All Categories</h6>
+                                        <form id="filterCategoryStatus" class="w-full"
+                                              action="{{route('admin.category')}}"
+                                              method="get">
+                                            <select type="text"
+                                                    name="status"
+                                                    required
+                                                    class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                    aria-label="status"
+                                                    aria-describedby="status-addon">
+                                                <option {{ !$is_main == "all" ? 'selected' : ''}}  value="all"> -- ALL
+                                                    --
+                                                </option>
+                                                <option {{ $is_main === false  ? 'selected' : ''}} value="sub-category">
+                                                    Sub category
+                                                </option>
+                                                <option
+                                                    title="Categories that are main and appears on nav menu | no direct articles"
+                                                    {{ $is_main === true ? 'selected' : ''}} value="main-category">
+                                                    Main category
+                                                </option>
+
+                                            </select>
+                                        </form>
+
+
                                     </div>
                                     <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                         @if(Auth()->user()->role === 'primary_admin')
@@ -46,9 +70,15 @@
                                                 <th class="px-6 py-3 pl-2 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
                                                     Is Main
                                                 </th>
-                                                <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
-                                                    N <sup>o</sup>. Articles
-                                                </th>
+                                                @if($is_main === false )
+                                                    <th class="px-6 py-3 pl-2 font-bold tracking-normal text-left uppercase bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
+                                                        Parent Category
+                                                    </th>
+
+                                                    <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
+                                                        N <sup>o</sup>. Articles
+                                                    </th>
+                                                @endif
                                                 @if(Auth()->user()->role === 'primary_admin')
                                                     <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
                                                         Option
@@ -77,10 +107,18 @@
                                                             {{$category->is_main ? 'Yes' : 'No'}}
                                                         </div>
                                                     </td>
-                                                    <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
+                                                    @if($is_main === false )
+                                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                                            <div class="mt-2 avatar-group">
+                                                                {{$category->parent ? $category->parent->name : 'No Parent'}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
                                                         <span
                                                             class="text-xs font-semibold leading-tight"> {{count($category->articles)}}</span>
-                                                    </td>
+                                                        </td>
+                                                    @endif
                                                     @if(Auth()->user()->role === 'primary_admin')
                                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                                                             <div class="w-3/4 mx-auto">
@@ -154,5 +192,10 @@
         function closeModal() {
             document.getElementById('deleteConfirmationModal').classList.add('hidden');
         }
+
+        //     javascript to filter user status
+        document.getElementById('filterCategoryStatus').addEventListener('change', function () {
+            this.submit();
+        });
     </script>
 </x-app-layout>
