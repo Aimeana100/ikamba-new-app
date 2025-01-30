@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\User;
+use App\Notifications\ArticleCreatedNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,20 +28,30 @@ class ArticleController extends Controller
     public function index(Request $request): View
     {
         $searchTerm = $request->input('search') || '';
+        $ArticleStatus = $request->input('status');
         $articles = Article::with('tags', 'comments', 'category', 'author')->where('status', true);
         if (Auth::user()->isJournalist()) {
             $articles = $articles->where('user_id', Auth::user()->id);
         }
-        if ($request->has('search')) {
-            $articles = $articles->where('title', 'like', '%' . $searchTerm . '%')
-                ->orWhere('description', 'like', '%' . $searchTerm . '%')
-                ->orWhere('headlines', 'like', '%' . $searchTerm . '%')
-                ->orWhere('caption', 'like', '%' . $searchTerm . '%');
+//        if ($request->has('search')) {
+//            $articles = $articles->where('title', 'like', '%' . $searchTerm . '%')
+//                ->orWhere('description', 'like', '%' . $searchTerm . '%')
+//                ->orWhere('headlines', 'like', '%' . $searchTerm . '%')
+//                ->orWhere('caption', 'like', '%' . $searchTerm . '%');
+//        }
+
+//        dd($ArticleStatus);
+        if ($ArticleStatus === "true") {
+            $articles = $articles->where('published_at', '!=', null);
+        } elseif ($ArticleStatus === "false") {
+            $articles = $articles->where('published_at', null);
+        } else {
+            $ArticleStatus = "null";
         }
         $articles = $articles->orderBy('priority', 'asc')->paginate(10);
 
 //        $articles = Article::with('tags', 'category', 'author')->where('status', true)->get();
-        return view('admin.article.index', compact('articles', 'searchTerm'));
+        return view('admin.article.index', compact('articles', 'searchTerm', 'ArticleStatus'));
 
     }
 
@@ -66,14 +78,25 @@ class ArticleController extends Controller
 
         date_default_timezone_set('Africa/kigali');
 
+        $chiefEditors = User::where('role', 'chief_editor')->where('status', 'active')->get();
+
         $article = new Article($request->all());
         $article->user_id = Auth::user()->id;
+
         $this->extracted($request, $article, true);
         if ($request->has('priority')) {
             Article::where('priority', $request->input('priority'))->update(['priority' => 0]);
         }
+
+
         $article->save();
 //        $article->tags()->attach($request->tags);
+
+        // Send notification to the chief editors
+        for ($i = 0; $i < count($chiefEditors); $i++) {
+            $chiefEditors[$i]->notify(new ArticleCreatedNotification($article));
+        }
+
 
         return redirect()->route('admin.article');
     }

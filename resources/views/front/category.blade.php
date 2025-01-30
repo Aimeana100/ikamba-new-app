@@ -62,31 +62,18 @@
                 <div class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last">
                     <x-most-popular-card :mostPopulars="$mostPopulars"/>
                     <!-- advertisement -->
-                    @php($ads = ['image' => @asset('front/src/img/ads/250.jpg')])
+                    {{--                    @php($ads = ['image' => @asset('front/src/img/ads/250.jpg')])--}}
                     {{--                    <x-ads-card :ads="$ads"/>--}}
-
-                    <div class="text-sm py-6 sticky">
-                        <div class="w-full text-center">
-                            <a class="uppercase" href="#">Advertisement</a>
-                            <a href="#">
-                                <img class="mx-auto" src="{{@asset('front/src/img/ads/250.jpg')}}"
-                                     alt="advertisement area">
-                            </a>
-                            {{--                            <div class="w-full text-center">--}}
-                            {{--                                <script async--}}
-                            {{--                                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"--}}
-                            {{--                                        crossorigin="anonymous"></script>--}}
-                            {{--                                <!-- Homepage Leaderboard -->--}}
-                            {{--                                <ins class="adsbygoogle"--}}
-                            {{--                                     style="display:inline-block;width:728px;height:90px"--}}
-                            {{--                                     data-ad-client="ca-pub-1234567890123456"--}}
-                            {{--                                     data-ad-slot="1234567890"></ins>--}}
-                            {{--                                <script>--}}
-                            {{--                                    (adsbygoogle = window.adsbygoogle || []).push({});--}}
-                            {{--                                </script>--}}
-                            {{--                            </div>--}}
-                        </div>
-                    </div>
+                    <x-ads-card/>
+                    {{--                    <div class="text-sm py-6 sticky">--}}
+                    {{--                        <div class="w-full text-center">--}}
+                    {{--                            <a class="uppercase" href="#">Advertisement</a>--}}
+                    {{--                            <a href="#">--}}
+                    {{--                                <img class="mx-auto" src="{{@asset('front/src/img/ads/250.jpg')}}"--}}
+                    {{--                                     alt="advertisement area">--}}
+                    {{--                            </a>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
         </div>

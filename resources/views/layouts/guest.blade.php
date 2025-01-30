@@ -239,7 +239,7 @@
                     @foreach($categories as $category)
                         <li class="dropdown relative">
                             <a class="block py-2 px-5 border-b  border-gray-100 dark:border-gray-600 text-gray-900 dark:text-gray-400 hover:bg-gray-50"
-                               href="javascript:;">
+                               href="javascript:void(0)">
                                 {{ $category->name }}
                             </a>
 
@@ -297,13 +297,15 @@
 
                         <!-- <img src="{{@asset('front/src/img-min/logo.png" alt="LOGO')}}"> -->
                     </div>
-                    <p>This is imbere.com for build great newspapper, magazine and news portal.</p>
+                    <p>Sura ikinyamakuru cya imbere.com ubone amakuru agezweho ku gihe, wadukurikira ku mbuga
+                        nkonyambaga zose dukoresha. Ufite n’igitekerezo cg amakuru ushaka kutugezaho amarembo
+                        arafunguye </p>
                     <ul class="space-x-3 mt-6 mb-6 Lg:mb-0">
                         <!--facebook-->
                         <li class="inline-block">
                             <a target="_blank" class=" hover:text-gray-700 dark:hover:text-gray-100"
                                rel="noopener noreferrer"
-                               href="https://facebook.com" title="Facebook">
+                               href="https://www.facebook.com/imberedotcom" title="Facebook">
                                 <!-- <i class="fab fa-facebook fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
                                      viewBox="0 0 512 512">
@@ -316,20 +318,21 @@
                         <li class="inline-block">
                             <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
                                rel="noopener noreferrer"
-                               href="https://twitter.com" title="Twitter">
+                               href="https://www.x.com/imberedotcom" title="Twitter">
                                 <!-- <i class="fab fa-twitter fa-2x"></i> -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
-                                     viewBox="0 0 512 512">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24">
                                     <path fill="currentColor"
-                                          d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"></path>
+                                          d="M17.85 2H21L14.23 9.94L22 22h-6.77l-4.82-7.07L5.67 22H2.52L10.02 13.3L2 2h6.9l4.36 6.57L17.85 2ZM16.77 20h2.14L7.07 4H4.78L16.77 20Z"/>
                                 </svg>
+
                             </a>
                         </li>
                         <!--youtube-->
                         <li class="inline-block">
                             <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
                                rel="noopener noreferrer"
-                               href="https://youtube.com" title="Youtube">
+                               href="https://www.youtube.com/@imberedotcom" title="Youtube">
                                 <!-- <i class="fab fa-youtube fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
                                      viewBox="0 0 512 512">
@@ -342,7 +345,7 @@
                         <li class="inline-block">
                             <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
                                rel="noopener noreferrer"
-                               href="https://instagram.com" title="Instagram">
+                               href="https://www.instagram.com/imberedotcom" title="Instagram">
                                 <!-- <i class="fab fa-instagram fa-2x"></i> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem"
                                      viewBox="0 0 512 512">
@@ -355,6 +358,20 @@
                                 </svg>
                             </a>
                         </li><!--end instagram-->
+
+
+                        <!--Tiktok-->
+                        <li class="inline-block">
+                            <a target="_blank" class="hover:text-gray-700 dark:hover:text-gray-100"
+                               rel="noopener noreferrer"
+                               href="https://www.tiktok.com/@imberedotcom" title="TikTok">
+                                <svg fill="currentColor" width="2rem" height="2rem" viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path
+                                        d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/></svg>
+                            </a>
+                        </li><!--end Tiktok-->
+
+
                     </ul>
                 </div>
                 <div class="flex-shrink max-w-full w-full lg:w-3/5 px-3">
@@ -363,11 +380,13 @@
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100">IBYO
                                 DUKORA</h4>
                             <ul>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Amakuru
-                                        agezweho </a>
-                                </li>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> kwamamaza </a></li>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Online TV Shows</a>
+                                {{--                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Amakuru--}}
+                                {{--                                        agezweho </a>--}}
+                                {{--                                </li>--}}
+                                {{--                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> kwamamaza </a></li>--}}
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="https://www.youtube.com/@imberedotcom">Online
+                                        TV Shows</a>
                                 </li>
                             </ul>
                         </div>
@@ -397,10 +416,22 @@
                             <h4 class="text-base leading-normal mb-3 uppercase text-gray-900 dark:text-gray-100">
                                 DUKURIKIRE</h4>
                             <ul>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Instagram </a></li>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">YouTube</a></li>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Facebook</a></li>
-                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="#">Twitter</a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="https://www.instagram.com/imberedotcom">
+                                        Instagram </a></li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="https://www.youtube.com/@imberedotcom">YouTube</a>
+                                </li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="https://www.facebook.com/imberedotcom">Facebook</a>
+                                </li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="http://www.x.com/imberedotcom">X
+                                        (Twitter) </a>
+                                </li>
+                                <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
+                                                                                           href="http://www.tiktok.com/@imberedotcom">TikTok</a>
+                                </li>
 
                             </ul>
                         </div>
@@ -415,7 +446,7 @@
         <div class="container py-4 border-t border-gray-200 border-opacity-10">
             <div class="row">
                 <div class="col-12 col-md text-center">
-                    <p class="d-block my-3">Copyright © Imbere | All rights reserved.</p>
+                    <p class="d-block my-3">Copyright © 2024 – {{Date('Y')}} @ Imbere | All rights reserved </p>
                 </div>
             </div>
         </div>
@@ -433,6 +464,22 @@
               clip-rule="evenodd"></path>
     </svg>
 </a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const maxLength = 150;
+        const textElement = document.getElementById('truncate-article');
+
+        if (textElement) {
+            let text = textElement.innerText;
+
+            if (text.length > maxLength) {
+                text = text.slice(0, maxLength) + '...';
+                textElement.innerText = text;
+            }
+        }
+    });
+</script>
 
 <!--Vendor js-->
 <script src="{{@asset('front/src/vendors/hc-sticky/dist/hc-sticky.js')}}"></script>

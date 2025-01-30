@@ -34,7 +34,7 @@
                                         <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold capitalize text-white mb-3 line-clamp-3">
                                             {{ $article->title }}
                                         </h2></a>
-                                    <p class="text-gray-100 hidden sm:inline-block"> {{ $article->headlines }} </p>
+                                    <p class="text-gray-100 hidden sm:inline-block line-clamp-3"> {{ $article->headlines }} </p>
                                     <div class="pt-2">
                                         <div class="text-gray-100">
                                             <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>
@@ -105,10 +105,12 @@
                     </div>
                 </div>
                 <!-- right -->
-                <div class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
-                    @php($ads = ['image' => @asset('front/src/img/ads/250.jpg')])
-                    <x-ads-card :ads="$ads"/>
+                {{--                @if($middle_active_ads)--}}
+                <div
+                    class="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
+                    <x-ads-card/>
                 </div>
+                {{--                @endif--}}
             </div>
         </div>
     </div>

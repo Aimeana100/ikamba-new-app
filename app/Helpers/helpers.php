@@ -1,8 +1,8 @@
 <?php
 
-// app/Helpers/helpers.php
+
 if (!function_exists('generateRandomPassword')) {
-    function generateRandomPassword($length = 8)
+    function generateRandomPassword($length = 8): string
     {
         $upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $lower = 'abcdefghijklmnopqrstuvwxyz';

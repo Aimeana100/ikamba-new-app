@@ -79,7 +79,7 @@
                                                         N <sup>o</sup>. Articles
                                                     </th>
                                                 @endif
-                                                @if(Auth()->user()->role === 'primary_admin')
+                                                @if(Auth()->user()->isPrimaryAdmin() || Auth()->user()->isChiefEditor())
                                                     <th class="px-6 py-3 font-bold tracking-normal text-center uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">
                                                         Option
                                                     </th>
@@ -119,7 +119,7 @@
                                                             class="text-xs font-semibold leading-tight"> {{count($category->articles)}}</span>
                                                         </td>
                                                     @endif
-                                                    @if(Auth()->user()->role === 'primary_admin')
+                                                    @if(Auth()->user()->isPrimaryAdmin() || Auth()->user()->isChiefEditor())
                                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                                                             <div class="w-3/4 mx-auto">
                                                                 <div class="ml-auto text-right">
