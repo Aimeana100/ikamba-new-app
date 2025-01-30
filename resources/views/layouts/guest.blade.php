@@ -467,17 +467,17 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const maxLength = 150;
-        const textElement = document.getElementById('truncate-article');
+        const maxLength = 150; // Define the maximum number of characters
+        const articles = document.querySelectorAll('.truncate-article');
 
-        if (textElement) {
-            let text = textElement.innerText;
-
+        articles.forEach(function (article) {
+            let text = article.innerText; // Get the text content of each article
             if (text.length > maxLength) {
-                text = text.slice(0, maxLength) + '...';
-                textElement.innerText = text;
+                text = text.slice(0, maxLength) + '...'; // Truncate the text if it's longer than the max length
+                article.innerText = text; // Update the text content with the truncated version
             }
-        }
+        });
+
     });
 </script>
 
