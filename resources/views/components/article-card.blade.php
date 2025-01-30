@@ -14,9 +14,8 @@
 
             <div class="max-w-sm">
                 <p
-                    id="truncate-article"
                     {{--                    style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;"--}}
-                    class="hidden md:block dark:text-gray-300 text-gray-600 leading-tight mb-2">
+                    class="hidden md:block dark:text-gray-300 text-gray-600 leading-tight mb-2 truncate-article">
                     {{$article->headlines}}
                 </p>
             </div>
