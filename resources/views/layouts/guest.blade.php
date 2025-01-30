@@ -26,6 +26,17 @@
     <meta property="og:image" content="@yield('og_image', @asset('front/src/img/favicon.jpg'))">
     <meta property="og:url" content="@yield('og_url', url()->current())">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="IMBERE">
+
+
+    <meta name="twitter:card" content="@yield('og_image', @asset('front/src/img/favicon.jpg'))">
+    <meta name="twitter:title" content="@yield('og_title', 'IMBERE')">
+    <meta name="twitter:description" content="@yield('og_description', 'Ikintu cyambere ni amakuru | IMBERE')">
+    <meta name="twitter:image" content="@yield('og_image', @asset('front/src/img/favicon.jpg'))">
+    <meta name="twitter:site" content="@imberedotcom">
+    <meta name="twitter:url" content="@yield('og_url', url()->current())">
+    <meta name="twitter:creator" content="@yield('twitter_creator', '@imberedotcom')">
+
 
     <title>@yield('page_title', 'Ikintu cyambere ni amakuru | IMBERE')</title>
 
@@ -426,11 +437,11 @@
                                                                                            href="https://www.facebook.com/imberedotcom">Facebook</a>
                                 </li>
                                 <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
-                                                                                           href="http://www.x.com/imberedotcom">X
+                                                                                           href="https://www.x.com/imberedotcom">X
                                         (Twitter) </a>
                                 </li>
                                 <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
-                                                                                           href="http://www.tiktok.com/@imberedotcom">TikTok</a>
+                                                                                           href="https://www.tiktok.com/@imberedotcom">TikTok</a>
                                 </li>
 
                             </ul>
