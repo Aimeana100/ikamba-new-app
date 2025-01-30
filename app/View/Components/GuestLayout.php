@@ -36,6 +36,7 @@ class GuestLayout extends Component
             ->get();
         $top_active_ads = Ads::where('position', 'TOP')->where('status', 1)->first();
         $bottom_active_ads = Ads::where('position', 'BOTTOM')->where('status', 1)->first();
+//        $middle_active_ads = Ads::where('position', 'MIDDLE')->where('status', 1)->first();
         return view('layouts.guest', compact('categories', 'top_active_ads', 'bottom_active_ads'));
     }
 }

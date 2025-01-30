@@ -27,11 +27,32 @@
                                                 class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                   <i class="fas fa-search"></i>
                 </span>
-                                            <input type="text"
-                                                   name="search"
-                                                   value="{{ request()->query('search') }}"
-                                                   class="pl-9 text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                                   placeholder="Type here..."/>
+                                            {{--                                            <input type="text"--}}
+                                            {{--                                                   name="search"--}}
+                                            {{--                                                   value="{{ request()->query('search') }}"--}}
+                                            {{--                                                   class="pl-9 flex-col  text-sm focus:shadow-soft-primary-outline ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"--}}
+                                            {{--                                                   placeholder="Type here..."/>--}}
+
+                                            <select type="text"
+                                                    name="status"
+                                                    id="filterArticleStatus"
+                                                    required
+                                                    class="flex-col focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                    aria-label="status"
+                                                    aria-describedby="status-addon">
+                                                <option {{$ArticleStatus === "null" ? 'selected' : ''}} value=null> --
+                                                    All
+                                                    --
+                                                </option>
+                                                <option {{$ArticleStatus === "true" ? 'selected' : ''}} value=true>
+                                                    Published
+                                                </option>
+                                                <option
+                                                    {{$ArticleStatus === "false" ? 'selected' : ''}} value=false>
+                                                    UnPublished
+                                                </option>
+
+                                            </select>
                                         </form>
                                     </div>
                                     <div class="flex-none w-1/2 max-w-full px-3 text-right">
@@ -301,6 +322,12 @@
         function closeModal() {
             document.getElementById('comments-modal').classList.add('hidden');
         }
+
+        //     javascript to filter user status
+        document.getElementById('filterArticleStatus').addEventListener('change', function () {
+            document.getElementById('searchArticle').submit();
+        });
+
 
     </script>
 </x-app-layout>

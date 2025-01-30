@@ -11,9 +11,15 @@
             <h3 class="text-lg font-bold leading-tight mb-2 dark:text-gray-300">
                 <a href="{{route('front.single', ['slug' => $article->slug])}}"> {{$article->title}} </a>
             </h3>
-            <p class="hidden md:block dark:text-gray-300 text-gray-600 leading-tight mb-2">
-                {{$article->headlines}}
-            </p>
+
+            <div class="max-w-sm">
+                <p
+                    id="truncate-article"
+                    {{--                    style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;"--}}
+                    class="hidden md:block dark:text-gray-300 text-gray-600 leading-tight mb-2">
+                    {{$article->headlines}}
+                </p>
+            </div>
 
             <a class="text-gray-500" href="{{route('front.single', ['slug' => $article->slug])}}"><span
                     class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{{$article->category->name}}
@@ -37,4 +43,5 @@
             </time>
         </div>
     </div>
+
 </div>

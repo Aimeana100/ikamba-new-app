@@ -76,6 +76,7 @@
                                                         aria-describedby="email-addon">
                                                         <option> -- select --</option>
                                                         <option value="TOP">Top</option>
+                                                        <option value="MIDDLE">Top</option>
                                                         <option value="BOTTOM">Bottom</option>
 
                                                     </select>

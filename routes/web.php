@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
 
 });
 
+
+//article routes
 Route::middleware(['auth', RoleMiddleware::class . ':primary_admin,chief_editor,journalist'])->group(function () {
     Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article');
 //    Route::get('/admin/article/{id}/comments', [ArticleController::class, 'fetchComments'])->name('admin.article.comments');

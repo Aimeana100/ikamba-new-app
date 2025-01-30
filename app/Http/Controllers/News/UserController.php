@@ -8,6 +8,7 @@ use App\Http\Requests\User\UpdateUserRequest;
 use App\Mail\NewUserEmail;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\UserReactivatedNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -90,7 +91,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->status = 'inactive';
         $user->save();
-        return redirect()->back()->with('success', 'User deleted successfully!');
+        return redirect()->back()->with('success', 'User deactivated successfully!');
     }
 
     public function activate(int $id): RedirectResponse
@@ -98,6 +99,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->status = 'active';
         $user->save();
+        $user->notify(new UserReactivatedNotification($user));
 
         return redirect()->route('admin.users')->with('success', 'User Activated successfully!');
     }
