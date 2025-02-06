@@ -490,6 +490,19 @@
         });
 
     });
+
+
+    window.addEventListener('load', function () {
+        document.querySelectorAll('oembed[url]').forEach(element => {
+            // get just the code for this youtube video from the url
+            let vCode = element.attributes.url.value.split('?v=')[1];
+            // paste some BS5 embed code in place of the Figure tag
+            element.parentElement.outerHTML = `
+    <div style="height: 100%"  class="">
+        <iframe style="position: relative; width: auto; height: 100%; top: 0; left: 0;" height="auto" src="https://www.youtube.com/embed/${vCode}?rel=0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>`;
+        });
+    })
 </script>
 
 <!--Vendor js-->
