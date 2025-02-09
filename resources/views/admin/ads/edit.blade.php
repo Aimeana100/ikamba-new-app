@@ -78,11 +78,15 @@
                                                             <option> -- select --</option>
                                                             <option
                                                                 value="TOP" {{$ads->position == 'TOP' ? 'selected' : ''}}>
-                                                                TOP
+                                                                Top
+                                                            </option>
+                                                            <option
+                                                                value="TOP" {{$ads->position == 'MIDDLE' ? 'selected' : ''}}>
+                                                                Middle
                                                             </option>
                                                             <option
                                                                 value="BOTTOM" {{$ads->position == 'BOTTOM' ? 'selected' : ''}}>
-                                                                BOTTOM
+                                                                Bottom
                                                             </option>
 
                                                         </select>

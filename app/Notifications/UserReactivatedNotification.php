@@ -17,10 +17,10 @@ class UserReactivatedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $defaultPassword)
     {
         $this->user = $user;
-        $this->defaultPassword = generateRandomPassword();
+        $this->defaultPassword = $defaultPassword;
     }
 
     /**

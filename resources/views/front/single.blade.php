@@ -58,7 +58,7 @@
                             {{--                            <x-author-with-image-card/>--}}
 
                             <!-- Comments -->
-                            <div id="comments" class="pt-16 hidden lg:block">
+                            <div id="comments" class="pt-16  lg:block">
                                 <!--title-->
                                 <h3 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100">
                                     Ibitekerezo
@@ -92,32 +92,32 @@
                 </div>
             </div>
 
-            <div class="flex flex-row flex-wrap -mx-3 block lg:hidden">
-                <div class="max-w-full w-full px-4">
+            {{--            <div class="flex flex-row flex-wrap -mx-3 lg:hidden">--}}
+            {{--                <div class="max-w-full w-full px-4">--}}
 
-                    <!-- Comments -->
-                    <div id="comments" class="pt-16">
-                        <!--title-->
-                        <h3 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100 block lg:hidden">
-                            Ibitekerezo
-                            ({{count($article->comments)}})
-                        </h3>
+            {{--                    <!-- Comments -->--}}
+            {{--                    <div id="comments" class="pt-16">--}}
+            {{--                        <!--title-->--}}
+            {{--                        <h3 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100 block lg:hidden">--}}
+            {{--                            Ibitekerezo--}}
+            {{--                            ({{count($article->comments)}})--}}
+            {{--                        </h3>--}}
 
-                        <!--comment list-->
-                        <div class="block lg:hidden">
-                            <x-comments-section :comments="$article->comments"/>
-                        </div>
+            {{--                        <!--comment list-->--}}
+            {{--                        <div class="block lg:hidden">--}}
+            {{--                            <x-comments-section :comments="$article->comments"/>--}}
+            {{--                        </div>--}}
 
-                        <!--comment form-->
-                        <div id="comment-form" class="mt-12">
-                            <h4 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100">
-                                TANGA IGITEKEREZO </h4>
-                            <p class="mb-5 dark:text-gray-300 text-gray-600"> Email yawe irakomeza kubikwa mu ibanga</p>
-                            <x-comment-form :article="$article"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{--                        <!--comment form-->--}}
+            {{--                        <div id="comment-form" class="mt-12">--}}
+            {{--                            <h4 class="text-2xl leading-normal mb-2 font-semibold text-gray-800 dark:text-gray-100">--}}
+            {{--                                TANGA IGITEKEREZO </h4>--}}
+            {{--                            <p class="mb-5 dark:text-gray-300 text-gray-600"> Email yawe irakomeza kubikwa mu ibanga</p>--}}
+            {{--                            <x-comment-form :article="$article"/>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
     </div>
     {{--    <x-top-ads-card/>--}}
