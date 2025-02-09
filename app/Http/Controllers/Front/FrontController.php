@@ -75,7 +75,7 @@ class FrontController extends Controller
 //        get category with published articles and authors where slug is equal to the slug passed in the url,
 
         $category = Category::where('slug', $slug)->first();
-        $articles = Article::with(['author'])->where('category_id', $category->id)->where('published_at', '<>', null)->paginate(9);
+        $articles = Article::with(['author'])->where('category_id', $category->id)->where('published_at', '<>', null)->paginate(1);
 
 //        dd($articles);
 
