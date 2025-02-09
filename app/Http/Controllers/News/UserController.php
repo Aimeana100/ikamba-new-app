@@ -96,10 +96,13 @@ class UserController extends Controller
 
     public function activate(int $id): RedirectResponse
     {
+        $defaultPassword = generateRandomPassword();
         $user = User::findOrFail($id);
         $user->status = 'active';
+        $user->password = Hash::make($defaultPassword);
+
         $user->save();
-        $user->notify(new UserReactivatedNotification($user));
+        $user->notify(new UserReactivatedNotification($user, $defaultPassword));
 
         return redirect()->route('admin.users')->with('success', 'User Activated successfully!');
     }

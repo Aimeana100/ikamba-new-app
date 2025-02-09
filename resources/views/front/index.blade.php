@@ -93,8 +93,7 @@
                 <div class="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
                     <div class="w-full py-3">
                         <h2 class="text-gray-800 dark:text-white text-2xl font-bold">
-                            <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span> Inkuru zakunzwe
-                            ziheruka
+                            <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span> Inkuru nshya ziheruka
                         </h2>
                     </div>
                     <div class="flex flex-row flex-wrap -mx-3">
