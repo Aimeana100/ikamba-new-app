@@ -53,8 +53,10 @@
                                 {{--call article-card componet and pass the $latestStory props   --}}
                                 <x-article-card :article="$latestStory"/>
                             @endforeach
-                            {{ $articles->links() }}
 
+                        </div>
+                        <div>
+                            {{ $articles->links() }}
                         </div>
                     @endif
                 </div>

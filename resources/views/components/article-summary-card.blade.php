@@ -24,7 +24,7 @@
                   d="M6.5 7a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z"
                   clip-rule="evenodd"></path>
         </svg>
-        {{\Carbon\Carbon::parse($article->published_at)->calendar()}}
+        {{ \Carbon\Carbon::parse($article->published_at)->locale('rw')->calendar() }}
     </time>
     <!--view-->
     <span class="mr-2 md:mr-4 dark:text-gray-300 text-gray-600">
@@ -38,7 +38,7 @@
       <path fill-rule="evenodd"
             d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
             clip-rule="evenodd"></path>
-    </svg> {{$article->views}} view
+    </svg> {{$article->views}} {{$article->views <= 1 ? "Yayisomye" : "Bayisomye"}}
   </span>
     <!--end view-->
 </div>

@@ -1,8 +1,10 @@
+<?php
+
 return [
-'previous' => '&laquo; Inyuma',
-'next' => 'Imbere &raquo;',
-'showing' => 'Kwerekana',
-'to' => 'kugera',
-'of' => 'muri',
-'results' => 'zabonetse',
+    'Inyuma' => '&laquo; Inyuma',
+    'Imbere' => 'Imbere &raquo;',
+    'Kwerekana' => 'Kwerekana',
+    'kugera' => 'kugera',
+    'of' => 'muri',
+    'zabonetse' => 'zabonetse',
 ];
