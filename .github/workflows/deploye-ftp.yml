@@ -1,22 +1,22 @@
-name: Deploy-FTP
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up LFTP
-        run: sudo apt-get install -y lftp
-
-      - name: Deploy to FTP
-        run: |
-          chmod +x scripts/deploy.sh
-          ./scripts/deploy.sh ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ./ /imbere.com/imbereaaeq/ikamba-app-github
+#name: Deploy-FTP
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up LFTP
+#        run: sudo apt-get install -y lftp
+#
+#      - name: Deploy to FTP
+#        run: |
+#          chmod +x scripts/deploy.sh
+#          ./scripts/deploy.sh ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ./ /imbere.com/imbereaaeq/ikamba-app-github

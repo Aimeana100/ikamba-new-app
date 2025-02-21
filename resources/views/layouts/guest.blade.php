@@ -402,10 +402,10 @@
                                     IBYO
                                     DUKORA</h4>
                                 <ul>
-                                    <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> Amakuru
-                                            agezweho </a>
+                                    <li class="py-1 hover:text-black dark:hover:text-white"><span> Amakuru
+                                            agezweho </span>
                                     </li>
-                                    <li class="py-1 hover:text-black dark:hover:text-white"><a href="#"> kwamamaza </a>
+                                    <li class="py-1 hover:text-black dark:hover:text-white"><span> kwamamaza </span>
                                     </li>
                                     <li class="py-1 hover:text-black dark:hover:text-white"><a target="_blank"
                                                                                                href="https://www.youtube.com/@imberedotcom">Online
@@ -418,11 +418,6 @@
                                     Main
                                     Links </h4>
                                 <ul>
-                                    {{--                                <li class="py-1 hover:text-black dark:hover:text-white"><a href="{{route('login')}}">Login</a></li>--}}
-
-                                    <li class="py-1 hover:text-black dark:hover:text-white"><a
-                                            href="{{route('dashboard')}}">
-                                            Dashboard </a></li>
                                 </ul>
                             </div>
                             <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
