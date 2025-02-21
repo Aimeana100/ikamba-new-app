@@ -14,7 +14,11 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Handle dashboard.imbere.com separately
+    RewriteCond %{HTTP_HOST} ^dashboard\.imbere\.com$ [NC]
+    RewriteRule ^(.*)$ index.php?dashboard=1 [QSA,L]
+
+    # Send all other requests to the front controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
