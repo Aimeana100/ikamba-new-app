@@ -42,6 +42,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect(env('APP_ADMIN_DOMAIN', 'localhost:8000'));
     }
 }
